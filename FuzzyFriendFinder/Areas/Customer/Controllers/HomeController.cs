@@ -1,4 +1,5 @@
-﻿using FuzzyFriendFinder.Models;
+﻿using FuzzyFriendFinder.Data;
+using FuzzyFriendFinder.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,12 +14,22 @@ namespace FuzzyFriendFinder.Controllers
     [Area("Customer")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //Added Dependency Injection. 
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _db;
+        
+        //Added Constructor.
+        public HomeController(ApplicationDbContext db)
+
         {
-            _logger = logger;
+            _db = db;
         }
+        //private readonly ilogger<homecontroller> _logger;
+
+        //public homecontroller(ilogger<homecontroller> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
