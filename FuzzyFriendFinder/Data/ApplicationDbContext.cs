@@ -14,13 +14,13 @@ namespace FuzzyFriendFinder.Data
         {
         }
 
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Category>  Category { get; set; }
 
         public DbSet<Pet> Pet { get; set; }
 
         public DbSet<Adoption> Adoption { get; set; }
 
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
     }
 }
