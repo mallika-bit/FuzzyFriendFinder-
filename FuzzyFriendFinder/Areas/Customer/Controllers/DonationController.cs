@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FuzzyFriendFinder.Areas.Customer.Controllers
 {
-    
+    [Area("Customer")]
     public class DonationController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -28,24 +28,15 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            return View();
-        }
-
-
-        
-        [Area("Customer")]
-        
-        public IActionResult DonationForm()
-        {
             var donation = new Donation();
             return View(donation);
+           
         }
 
 
-        [Area("Customer")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
         public async Task<IActionResult> Payment(string stripeToken)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
