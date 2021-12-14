@@ -1,4 +1,5 @@
 using FuzzyFriendFinder.Data;
+using FuzzyFriendFinder.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,13 @@ namespace FuzzyFriendFinder
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromSeconds(3);//You can set Time   
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,8 +65,12 @@ namespace FuzzyFriendFinder
 
             app.UseRouting();
 
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
+
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
