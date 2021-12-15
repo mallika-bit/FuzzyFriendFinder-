@@ -62,7 +62,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                     Name = createPet.Pet.Name,
                     Status = true,
                     Size = createPet.Pet.Size,
-                    Age = createPet.Pet.Age,
+                    Weeks = createPet.Pet.Weeks,
                     Breed = createPet.Pet.Breed,
                     Category = createPet.Pet.Category,
                     Color = createPet.Pet.Color,

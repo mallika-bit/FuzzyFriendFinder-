@@ -71,13 +71,13 @@
 
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Pet.Age" class="col-form-label"></label>
+                <label class="col-form-label">Age</label>
             </div>
             <div class="col-5">
                 @*<input asp-for="Pet.Age" class="form-control" />*@
                 <div class="row">
                     <div class="col-4">
-                        years:
+                        <label asp-for="Pet.Years" class="col-form-label">years:</label>
                         <select name="years">
                             <option selected>-</option>
                             <option value="1">1</option>
@@ -103,7 +103,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        months:
+                        <label asp-for="Pet.Months" class="col-form-label">months:</label>
                         <select name="months">
                             <option selected>-</option>
                             <option value="1">1</option>
@@ -120,7 +120,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        weeks: 
+                        <label asp-for="Pet.Weeks" class="col-form-label">weeks:</label>
                         <select name="weeks">
                             <option selected>-</option>
                             <option value="1">1</option>
@@ -139,7 +139,9 @@
                     </div>
                 </div>
             </div>
-            <span asp-validation-for="Pet.Age" class="text-danger"></span>
+            <span asp-validation-for="Pet.Years" class="text-danger"></span>
+            <span asp-validation-for="Pet.Months" class="text-danger"></span>
+            <span asp-validation-for="Pet.Weeks" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
