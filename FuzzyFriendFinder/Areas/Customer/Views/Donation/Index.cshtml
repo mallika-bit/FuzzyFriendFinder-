@@ -1,0 +1,76 @@
+﻿@model FuzzyFriendFinder.Models.Donation
+@using Microsoft.Extensions.Options
+
+@inject IOptions<FuzzyFriendFinder.Utility.StripeSettings> Stripe
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h4 style="font-family:'Comic Sans MS';color:lightskyblue;text-align:center;margin-top:80px;">Donation Please</h4>
+
+<div class="row " style="margin-top:30px; ">
+    <div class="col-md-4 ">
+
+    </div>
+
+
+    <div class="col-md-4 border border-info rounded" style="padding:70px;">
+
+
+        <form method="post" asp-area="Customer" asp-controller="Donation" asp-action="Payment">
+
+
+
+            <input hidden asp-for="@Model.UserId" value="@Model.UserId" />
+            <label asp-for="Amount">Your Amount For Donation</label>
+            <input asp-for="Amount" id="amount" name="amount" class="form-control" placeholder="Enter amount" />
+            <span asp-validation-for="Amount" class="text-danger"></span>
+
+
+            @{
+                var DonationStripe = Model.Amount * 100;
+            }
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="@Stripe.Value.PublishableKey"
+                    data-amount="@DonationStripe"
+                    data-name="Fuzzy Friend Finder"
+                    data-label="Donation"
+                    data-description="Pet Lovers"
+                    data-locale="auto"
+                    data-allow-remember-me="false"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
+            </script>
+            <script>
+                document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+            </script>
+
+
+
+            <button type="submit" name="btnSubmit" onclick="return validate()" class="btn btn-info form-control" style="margin-top:20px">Donation</button>
+
+
+
+        </form>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    @section Scripts{
+
+        <script>
+        function validate() {
+            var amount = document.getElementById("amount").value;
+            if (amount == 0 || amount == null) {
+                alert("Please Enter Amount")
+                return false;
+            }
+            else {
+                return true;
+            }
+
+        }
+        </script>
+    }

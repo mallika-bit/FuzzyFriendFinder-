@@ -4,14 +4,16 @@ using FuzzyFriendFinder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FuzzyFriendFinder.Migrations
+namespace FuzzyFriendFinder.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211213161919_AddedImageWeekMonthYearsToPetModel")]
+    partial class AddedImageWeekMonthYearsToPetModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace FuzzyFriendFinder.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Adoptions");
+                    b.ToTable("Adoption");
                 });
 
             modelBuilder.Entity("FuzzyFriendFinder.Models.Category", b =>
@@ -56,27 +58,7 @@ namespace FuzzyFriendFinder.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("FuzzyFriendFinder.Models.Donation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Donations");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("FuzzyFriendFinder.Models.Pet", b =>
@@ -137,7 +119,7 @@ namespace FuzzyFriendFinder.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Pets");
+                    b.ToTable("Pet");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -369,13 +351,6 @@ namespace FuzzyFriendFinder.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FuzzyFriendFinder.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("FuzzyFriendFinder.Models.Donation", b =>
-                {
                     b.HasOne("FuzzyFriendFinder.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");

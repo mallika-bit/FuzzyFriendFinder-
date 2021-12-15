@@ -20,7 +20,9 @@ namespace FuzzyFriendFinder.Data
 
         public DbSet<Adoption> Adoptions { get; set; }
 
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public DbSet<Donation> Donations { get; set; }
 
     }
 }
