@@ -1,0 +1,130 @@
+﻿@model List<Pet>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul id="listings-nav-pills" class="nav nav-pills mb-4" role="tablist">
+    <li class="nav-item">
+        <a id="allListings-link" class="nav-link active px-5 font-weight-bold" data-toggle="tab" href="#allListings">All Listings</a>
+    </li>
+    <li class="nav-item">
+        <a id="dogListings-link" class="nav-link px-5 font-weight-bold" data-toggle="tab" href="#dogListings">Dog Listings</a>
+    </li>
+    <li class="nav-item">
+        <a id="catListings-link" class="nav-link px-5 font-weight-bold" data-toggle="tab" href="#catListings">Cat Listings</a>
+    </li>
+</ul>
+
+<!-- Tabs content -->
+<div class="tab-content" id="ex1-content">
+    <div class="tab-pane fade show active"
+         id="allListings"
+         role="tabpanel"
+         aria-labelledby="ex1-tab-1">
+
+        @foreach (var pet in Model)
+        {
+
+
+
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                             alt="Trendy Pants and Shoes"
+                             class="img-fluid rounded-start" style="height:300px;width:280px;" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body" style="position:relative;height:100%;">
+                            <h5 class="card-title">@pet.Name - @pet.Category.Name</h5>
+                            <p class="card-text" style="height:70%;">
+                                    @pet.Description
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="card-text mr-1 mt-1" style="float:right;">
+                            <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit">Edit</button>
+                            <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete">Delete</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        }
+
+    </div>
+    <div class="tab-pane fade" id="dogListings" role="tabpanel" aria-labelledby="ex1-tab-2">
+        @foreach (var pet in Model)
+        {
+            if (pet.Category.Name == "Dog")
+            {
+
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                 alt="Trendy Pants and Shoes"
+                                 class="img-fluid rounded-start" style="height:300px;width:280px;" />
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body" style="position:relative;height:100%;">
+                                <h5 class="card-title">@pet.Name - @pet.Category.Name</h5>
+                                <p class="card-text" style="height:70%;">
+                                    @pet.Description
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="card-text mr-1 mt-1" style="float:right;">
+                                <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit">Edit</button>
+                                <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete">Delete</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        }
+    </div>
+    <div class="tab-pane fade" id="catListings" role="tabpanel" aria-labelledby="ex1-tab-3">
+        @foreach (var pet in Model)
+        {
+            if (pet.Category.Name == "Cat")
+            {
+
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+                                 alt="Trendy Pants and Shoes"
+                                 class="img-fluid rounded-start" style="height:300px;width:280px;" />
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body" style="position:relative;height:100%;">
+                                <h5 class="card-title">@pet.Name - @pet.Category.Name</h5>
+                                <p class="card-text" style="height:70%;">
+                                    @pet.Description
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="card-text mr-1 mt-1" style="float:right;">
+                                <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit">Edit</button>
+                                <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete">Delete</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        }
+    </div>
+</div>
+<!-- Tabs content -->
