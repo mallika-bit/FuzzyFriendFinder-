@@ -110,7 +110,7 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
                     {
                         await _rolemanager.CreateAsync(new IdentityRole(SD.CustomerUser));
                     }
-                    await _userManager.AddToRoleAsync(user, SD.CustomerUser);
+                   // await _userManager.AddToRoleAsync(user, SD.CustomerUser);
 
                     if (!await _rolemanager.RoleExistsAsync(SD.ManagerUser))
                     {
