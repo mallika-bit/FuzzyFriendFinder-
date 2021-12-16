@@ -1,0 +1,202 @@
+﻿@using FuzzyFriendFinder.ViewModels
+@model CreatePet
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">New Listing</h2>
+<br />
+
+<form method="post" asp-action="CreatePet" enctype="multipart/form-data">
+    <div class=" backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.CategoryId" class="col-form-label"></label>
+            </div>
+            <div class="col-5 mt-2">
+                <div class="row">
+                    <div class="col-3">
+                        <input asp-for="Pet.CategoryId" class="" type="radio" value="1" />  Dog
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="Pet.CategoryId" class="ml-3" type="radio" value="2" />  Cat
+
+                    </div>
+                </div>                
+            </div>
+            <span asp-validation-for="Pet.Category" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.Name" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Pet.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Pet.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.Gender" class="col-form-label"></label>
+            </div>
+            <div class="col-5 mt-2">
+                <div class="row">
+                    <div class="col-3">
+                        <input asp-for="Pet.Gender" class="" type="radio" value="Male" />  Male
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="Pet.Gender" class="ml-3" type="radio" value="Female" />  Female
+
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="Pet.Gender" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.Breed" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Pet.Breed" class="form-control" />
+            </div>
+            <span asp-validation-for="Pet.Breed" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="col-form-label">Age</label>
+            </div>
+            <div class="col-5">
+                @*<input asp-for="Pet.Age" class="form-control" />*@
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Pet.Years" class="col-form-label">years:</label>
+                        <select name="years">
+                            <option selected>-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Pet.Months" class="col-form-label">months:</label>
+                        <select name="months">
+                            <option selected>-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Pet.Weeks" class="col-form-label">weeks:</label>
+                        <select name="weeks">
+                            <option selected>-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="Pet.Years" class="text-danger"></span>
+            <span asp-validation-for="Pet.Months" class="text-danger"></span>
+            <span asp-validation-for="Pet.Weeks" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.Size" class="col-form-label">Weight (lbs)</label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Pet.Size" class="form-control" />
+            </div>
+            <span asp-validation-for="Pet.Size" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.Color" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Pet.Color" class="form-control" />
+            </div>
+            <span asp-validation-for="Pet.Color" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.Description" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <textarea asp-for="Pet.Description" class="form-control"></textarea>
+            </div>
+            <span asp-validation-for="Pet.Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pictures" class="col-form-label"></label>
+            </div>
+            <div class="col-5">
+                <input type="file" asp-for="Pictures" multiple>
+
+            </div>
+            <span asp-validation-for="Pictures" class="text-danger"></span>
+        </div>
+
+
+
+        @*<div class="form-group row">
+                <div class="col-5 offset-2">
+                    <partial name="_CreateAndBackToListButton" />
+                </div>
+            </div>*@
+    </div>
+    <div class="form-group row">
+        <div class="col-3 offset-2">
+            <button type="submit" class="btn btn-primary form-control ">Create</button>
+        </div>
+    </div>
+  
+</form>
