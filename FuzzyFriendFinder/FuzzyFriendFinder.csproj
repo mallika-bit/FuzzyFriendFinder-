@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20211217024200_DatabaseRecreated.cs" />
+    <Compile Remove="Migrations\20211217024200_DatabaseRecreated.Designer.cs" />
+    <Compile Remove="Migrations\20211217024258_Database-Created.cs" />
+    <Compile Remove="Migrations\20211217024258_Database-Created.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.19" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
@@ -22,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\NewFolder\" />
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

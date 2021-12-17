@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FuzzyFriendFinder.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class DatabaseInitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -171,20 +171,43 @@ namespace FuzzyFriendFinder.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Donations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Amount = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Donations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Donations_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pets",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: false),
-                    Age = table.Column<int>(nullable: false),
-                    Breed = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 255, nullable: false),
+                    Description = table.Column<string>(maxLength: 255, nullable: false),
+                    Weeks = table.Column<int>(nullable: false),
+                    Months = table.Column<int>(nullable: false),
+                    Years = table.Column<int>(nullable: false),
+                    Breed = table.Column<string>(maxLength: 255, nullable: false),
                     Status = table.Column<bool>(nullable: false),
-                    Gender = table.Column<string>(nullable: false),
-                    Color = table.Column<string>(nullable: true),
+                    Gender = table.Column<string>(maxLength: 50, nullable: false),
+                    Color = table.Column<string>(maxLength: 50, nullable: true),
                     Size = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false),
+                    Image = table.Column<string>(maxLength: 1024, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -274,6 +297,11 @@ namespace FuzzyFriendFinder.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Donations_UserId",
+                table: "Donations",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Pets_CategoryId",
                 table: "Pets",
                 column: "CategoryId");
@@ -298,6 +326,9 @@ namespace FuzzyFriendFinder.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Donations");
 
             migrationBuilder.DropTable(
                 name: "Pets");
