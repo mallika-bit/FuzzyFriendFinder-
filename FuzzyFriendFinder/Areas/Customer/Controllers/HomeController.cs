@@ -43,14 +43,18 @@ namespace FuzzyFriendFinder.Controllers
         {
             var cats = await _db.Pets.Include(x => x.Category.Id == 2).Where(m => m.Status == true).ToListAsync();
 
-            return View(cats);
+            ViewBag.cats = cats;
+
+            return View();
         }
 
         public async Task<IActionResult> Dogs()
         {
             var dogs = await _db.Pets.Include(x => x.Category.Id == 1).Where(m => m.Status == true).ToListAsync();
 
-            return View(dogs);
+            ViewBag.dogs = dogs;
+
+            return View();
         }
 
         public async Task<IActionResult> AllListings()

@@ -1,6 +1,6 @@
 ﻿
 
-@model IEnumerable<FuzzyFriendFinder.Models.Pet>
+
 @{
     ViewData["Title"] = "Dogs";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,7 +18,10 @@
 
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
-    @foreach (var item in Model)
+
+    @ViewBag.dogs
+
+    @foreach (var item in ViewBag.dogs)
     {
         <div class="col">
             <div class="card">
