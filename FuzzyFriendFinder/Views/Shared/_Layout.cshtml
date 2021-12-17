@@ -20,6 +20,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarColor01">
+                    <partial name="_LoginPartial" />
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" href="#">
@@ -37,22 +38,22 @@
                             <a class="nav-link" href="#">About</a>
                         </li>
                         @if (User.IsInRole(SD.ManagerUser))
-        {
+                        {
 
-                        <li class="nav-item dropdown text-white-50">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Manage
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                                <a class="dropdown-item" asp-action="Create" asp-controller="Pets" asp-area="Admin">New Listing</a>
-                                <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Manage Listing</a>
-                                <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Pet Requests</a>
-                                <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Donations</a>
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Manage
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Create" asp-controller="Pets" asp-area="Admin">New Listing</a>
+                                    <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Manage Listing</a>
+                                    <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Pet Requests</a>
+                                    <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Donations</a>
 
 
-                            </div>
+                                </div>
 
-                        </li>
+                            </li>
                         }
                     </ul>
                     <form class="d-flex">
