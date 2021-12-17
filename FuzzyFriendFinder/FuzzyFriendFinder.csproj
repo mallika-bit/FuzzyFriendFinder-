@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\NewFolder\" />
+     <Folder Include="Data\Migrations\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
