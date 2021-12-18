@@ -3,7 +3,7 @@
     ViewData["Title"] = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <ul id="listings-nav-pills" class="nav nav-pills mb-4" role="tablist">
     <li class="nav-item">
         <a id="allListings-link" class="nav-link active px-5 font-weight-bold" data-toggle="tab" href="#allListings">All Listings</a>
@@ -14,6 +14,17 @@
     <li class="nav-item">
         <a id="catListings-link" class="nav-link px-5 font-weight-bold" data-toggle="tab" href="#catListings">Cat Listings</a>
     </li>
+    @*<li class="nav-item">
+        <div class="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>*@
+
+</li>
+
+    
 </ul>
 
 <!-- Tabs content -->
