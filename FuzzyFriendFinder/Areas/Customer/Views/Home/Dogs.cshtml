@@ -31,7 +31,7 @@
                     <p class="card-text">@item.Breed</p>
                     <p class="card-text">@item.Status</p>
                     <p class="card-text">@item.Gender</p>
-                    <p class="card-text" style="text-align:right">Details</p>
+                    <p class="card-text" style="text-align:right"><a asp-controller="Home" asp-action="Details" asp-route-id=@item.Id>Details</a></p>
                 </div>
             </div>
         </div>
