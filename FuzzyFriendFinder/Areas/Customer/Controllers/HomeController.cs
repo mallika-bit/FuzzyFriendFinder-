@@ -41,7 +41,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> Cats()
         {
-            var cats = await _db.Pets.Include(x => x.Category.Id == 2).Where(m => m.Status == true).ToListAsync();
+            var cats = await _db.Pets.Where(x => x.Category.Id == 2).Where(m => m.Status == true).ToListAsync();
 
             ViewBag.cats = cats;
 
@@ -50,7 +50,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> Dogs()
         {
-            var dogs = await _db.Pets.Include(x => x.Category.Id == 1).Where(m => m.Status == true).ToListAsync();
+            var dogs = await _db.Pets.Where(x => x.Category.Id == 1).Where(m => m.Status == true).ToListAsync();
 
             ViewBag.dogs = dogs;
 

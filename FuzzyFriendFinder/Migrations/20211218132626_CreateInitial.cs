@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FuzzyFriendFinder.Migrations
 {
-    public partial class DatabaseInitialCreate : Migration
+    public partial class CreateInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -205,9 +205,9 @@ namespace FuzzyFriendFinder.Migrations
                     Status = table.Column<bool>(nullable: false),
                     Gender = table.Column<string>(maxLength: 50, nullable: false),
                     Color = table.Column<string>(maxLength: 50, nullable: true),
-                    Size = table.Column<int>(nullable: false),
+                    Weight = table.Column<int>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
-                    Image = table.Column<string>(maxLength: 1024, nullable: false)
+                    ImageUrls = table.Column<string>(maxLength: 1024, nullable: false)
                 },
                 constraints: table =>
                 {
