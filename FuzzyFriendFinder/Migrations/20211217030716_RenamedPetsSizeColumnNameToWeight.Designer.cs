@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FuzzyFriendFinder.Data.Migrations
+namespace FuzzyFriendFinder.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211213161919_AddedImageWeekMonthYearsToPetModel")]
-    partial class AddedImageWeekMonthYearsToPetModel
+    [Migration("20211217030716_RenamedPetsSizeColumnNameToWeight")]
+    partial class RenamedPetsSizeColumnNameToWeight
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,7 +43,7 @@ namespace FuzzyFriendFinder.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Adoption");
+                    b.ToTable("Adoptions");
                 });
 
             modelBuilder.Entity("FuzzyFriendFinder.Models.Category", b =>
@@ -58,7 +58,27 @@ namespace FuzzyFriendFinder.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("FuzzyFriendFinder.Models.Donation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Donations");
                 });
 
             modelBuilder.Entity("FuzzyFriendFinder.Models.Pet", b =>
@@ -90,7 +110,7 @@ namespace FuzzyFriendFinder.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImageUrls")
                         .IsRequired()
                         .HasColumnType("nvarchar(1024)")
                         .HasMaxLength(1024);
@@ -103,13 +123,13 @@ namespace FuzzyFriendFinder.Data.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.Property<int>("Weeks")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Weight")
                         .HasColumnType("int");
 
                     b.Property<int>("Years")
@@ -119,7 +139,7 @@ namespace FuzzyFriendFinder.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Pet");
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -351,6 +371,13 @@ namespace FuzzyFriendFinder.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FuzzyFriendFinder.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("FuzzyFriendFinder.Models.Donation", b =>
+                {
                     b.HasOne("FuzzyFriendFinder.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");

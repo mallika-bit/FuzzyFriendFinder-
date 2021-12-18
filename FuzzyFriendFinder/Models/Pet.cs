@@ -55,7 +55,7 @@ namespace FuzzyFriendFinder.Models
         public string Color { get; set; }
 
         [Range(4,100)]
-        public int Size { get; set; }
+        public int Weight { get; set; }
 
         
         public int CategoryId { get; set; }
@@ -66,7 +66,7 @@ namespace FuzzyFriendFinder.Models
 
         [Required]
         [StringLength(1024)]
-        public string Image { get; set; }
+        public string ImageUrls { get; set; }
 
         public Pet()
         {
