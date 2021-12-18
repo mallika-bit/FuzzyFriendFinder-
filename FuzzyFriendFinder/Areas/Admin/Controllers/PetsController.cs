@@ -43,15 +43,16 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreatePet(CreatePet createPet)
         {
-            //if (_db.Category.ToList().Count() == 0)
-            //{
-            //    _db.Category.Add(new Category { Name = "Dog" });
-            //    _db.Category.Add(new Category { Name = "Cat" });
+            if (_db.Categories.ToList().Count() == 0)
+            {
+                _db.Categories.Add(new Category { Name = "Dog" });
+                _db.Categories.Add(new Category { Name = "Cat" });
 
-            //    _db.SaveChanges();
-            //}
+                _db.SaveChanges();
+            }
 
-            //Test@12345
+            createPet.Pet.ImageUrls = "Sample";
+
 
             if (ModelState.IsValid)
             {
@@ -61,33 +62,40 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 {
                     Name = createPet.Pet.Name,
                     Status = true,
-                    Size = createPet.Pet.Size,
+                    Weight = createPet.Pet.Weight,
                     Weeks = createPet.Pet.Weeks,
                     Breed = createPet.Pet.Breed,
                     Category = createPet.Pet.Category,
                     Color = createPet.Pet.Color,
                     Description = createPet.Pet.Description,
                     Gender = createPet.Pet.Gender,
-
-                    //ImageUrls = ""
                 };
 
                 pet.Category = _db.Categories.ToList().Where(type => type.Id == createPet.Pet.CategoryId).FirstOrDefault();
 
-                //createPet.Pictures.ForEach(picture =>
-                //{
-                //    var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
-                //    var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
-                //    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
-                //    using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
-                //    {
-                //        picture.CopyTo(stream);
-                //    }
+                createPet.Pictures.ForEach(picture =>
+                {
+                    var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
+                    var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
+                    using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
+                    {
+                        picture.CopyTo(stream);
+                    }
 
-                //    pet.ImageUrls += path + uniqueFilename + " ";
-                //});
+                    var pathToSave = "/images/" + uniqueFilename;
 
-                //if valid
+                    if (picture.FileName != createPet.Pictures.Last().FileName)
+                    {
+                        pet.ImageUrls += pathToSave + ", ";
+                    }
+                    else
+                    {
+                        pet.ImageUrls += pathToSave;
+                    }
+                    
+                });
+
                 _db.Pets.Add(pet);
 
                 _db.SaveChanges();

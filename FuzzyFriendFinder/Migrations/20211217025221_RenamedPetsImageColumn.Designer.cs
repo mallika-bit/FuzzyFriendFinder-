@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FuzzyFriendFinder.Data.Migrations
+namespace FuzzyFriendFinder.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211213163759_CreateedDonationTable")]
-    partial class CreateedDonationTable
+    [Migration("20211217025221_RenamedPetsImageColumn")]
+    partial class RenamedPetsImageColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,7 +110,7 @@ namespace FuzzyFriendFinder.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImageUrls")
                         .IsRequired()
                         .HasColumnType("nvarchar(1024)")
                         .HasMaxLength(1024);
