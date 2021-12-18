@@ -1,6 +1,8 @@
 ﻿using FuzzyFriendFinder.Data;
 using FuzzyFriendFinder.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,26 +16,52 @@ namespace FuzzyFriendFinder.Controllers
     [Area("Customer")]
     public class HomeController : Controller
     {
-        //Added Dependency Injection. 
 
         private readonly ApplicationDbContext _db;
-        
-        //Added Constructor.
+
         public HomeController(ApplicationDbContext db)
 
         {
             _db = db;
         }
-        //private readonly ilogger<homecontroller> _logger;
 
-        //public homecontroller(ilogger<homecontroller> logger)
-        //{
-        //    _logger = logger;
-        //}
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var pet = await _db.Pets.Where(m => m.Status == true).ToListAsync();
+
+            return View(pet);
+        }
+
+        public IActionResult About()
         {
             return View();
+        }
+
+
+        public async Task<IActionResult> Cats()
+        {
+            var cats = await _db.Pets.Include(x => x.Category.Id == 2).Where(m => m.Status == true).ToListAsync();
+
+            ViewBag.cats = cats;
+
+            return View();
+        }
+
+        public async Task<IActionResult> Dogs()
+        {
+            var dogs = await _db.Pets.Include(x => x.Category.Id == 1).Where(m => m.Status == true).ToListAsync();
+
+            ViewBag.dogs = dogs;
+
+            return View();
+        }
+
+        public async Task<IActionResult> AllListings()
+        {
+            var allListings = await _db.Pets.Where(m => m.Status == true).ToListAsync();
+
+            return View(allListings);
         }
 
         public IActionResult Privacy()
@@ -41,9 +69,13 @@ namespace FuzzyFriendFinder.Controllers
             return View();
         }
 
-        public IActionResult Details()
+
+
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var petdet = await _db.Pets.Include(m => m.Category).Where(m => m.Id == id).FirstOrDefaultAsync();
+
+            return View(petdet);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
