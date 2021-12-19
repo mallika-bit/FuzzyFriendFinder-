@@ -11,6 +11,7 @@ namespace FuzzyFriendFinder.Models
     {
 
         [Required]
+        [Key]
         public int Id { get; set; }
 
 
