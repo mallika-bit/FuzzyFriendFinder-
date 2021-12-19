@@ -1,6 +1,7 @@
 ﻿using FuzzyFriendFinder.Data;
 using FuzzyFriendFinder.Models;
 using FuzzyFriendFinder.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -64,6 +65,8 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                     Status = true,
                     Weight = createPet.Pet.Weight,
                     Weeks = createPet.Pet.Weeks,
+                    Years = createPet.Pet.Years,
+                    Months = createPet.Pet.Months,
                     Breed = createPet.Pet.Breed,
                     Category = createPet.Pet.Category,
                     Color = createPet.Pet.Color,
@@ -103,6 +106,26 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 return RedirectToAction(nameof(List));
 
             }
+            return View(createPet);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            
+            var pet = _db.Pets.Where(pet => pet.Id == id).FirstOrDefault();
+
+            if (pet == null)
+            {
+                return NotFound();
+            }
+
+            var createPet = new CreatePet();
+            createPet.Pet = pet;
+
             return View(createPet);
         }
     }
