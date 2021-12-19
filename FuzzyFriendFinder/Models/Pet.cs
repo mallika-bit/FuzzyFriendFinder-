@@ -11,17 +11,18 @@ namespace FuzzyFriendFinder.Models
     {
 
         [Required]
+        [Key]
         public int Id { get; set; }
 
 
         [Required]
         [StringLength(255)]
-        public string  Name { get; set; }
+        public string Name { get; set; }
 
 
         [Required]
         [StringLength(255)]
-        public string  Description { get; set; }
+        public string Description { get; set; }
 
 
         [Required]
@@ -40,8 +41,8 @@ namespace FuzzyFriendFinder.Models
         public string Breed { get; set; }
 
 
-        
-        public bool  Status { get; set; }
+
+        public bool Status { get; set; }
 
 
 
@@ -54,10 +55,10 @@ namespace FuzzyFriendFinder.Models
         [StringLength(50)]
         public string Color { get; set; }
 
-        [Range(4,100)]
-        public int Size { get; set; }
+        [Range(4, 100)]
+        public int Weight { get; set; }
 
-        
+
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
@@ -66,7 +67,7 @@ namespace FuzzyFriendFinder.Models
 
         [Required]
         [StringLength(1024)]
-        public string Image { get; set; }
+        public string ImageUrls { get; set; }
 
         public Pet()
         {

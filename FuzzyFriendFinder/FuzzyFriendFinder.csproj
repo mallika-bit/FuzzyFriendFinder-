@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20211217024200_DatabaseRecreated.cs" />
+    <Compile Remove="Migrations\20211217024200_DatabaseRecreated.Designer.cs" />
+    <Compile Remove="Migrations\20211217024258_Database-Created.cs" />
+    <Compile Remove="Migrations\20211217024258_Database-Created.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.19" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
@@ -17,10 +24,14 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.19" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Stripe.net" Version="39.78.1" />
+    <PackageReference Include="Twilio" Version="5.69.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\NewFolder\" />
+
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
