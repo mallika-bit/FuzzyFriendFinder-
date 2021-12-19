@@ -29,13 +29,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="AllListings" asp-area="Customer">AllListings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Cats" asp-area="Customer">Cats</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Dogs" asp-area="Customer">Dogs</a>
                         </li>
                         @if (User.IsInRole(SD.ManagerUser))
                         {

@@ -29,7 +29,10 @@
 
   <ItemGroup>
     <Folder Include="Controllers\NewFolder\" />
-    <Folder Include="Data\Migrations\" />
+
+    <Folder Include="Controllers\" />
+
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
