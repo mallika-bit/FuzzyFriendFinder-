@@ -16,8 +16,8 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
     {
         private readonly ApplicationDbContext _db;
 
-        [BindProperty]
-        public Adoption adoption { get; set; }
+        //[BindProperty]
+        //public Adoption adoption { get; set; }
 
         public AdoptionController(ApplicationDbContext db)
         {
@@ -30,7 +30,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            // var adoption = new Adoption();
+            var adoption = new Adoption();
             var petid = _db.Pets.Where(m => m.Id == id).FirstOrDefault();
 
             adoption.UserId = claim.Value;
