@@ -10,6 +10,7 @@ namespace FuzzyFriendFinder.Models
 {
     public class Adoption
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
