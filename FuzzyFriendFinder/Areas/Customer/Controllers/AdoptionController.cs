@@ -43,6 +43,15 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
 
               _db.SaveChanges();
 
+
+
+            //updating pet status
+            petid.Status = false;
+            _db.SaveChanges();
+           // _db.Pets.Update(petid);
+
+
+
             //Send SMS to Customer
 
             string accountSid = "AC0f3a8bd2534fd3e458ef150e4df35f5d";

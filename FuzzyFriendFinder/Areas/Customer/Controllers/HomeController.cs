@@ -59,7 +59,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> AllListings()
         {
-            var allListings = await _db.Pets.Where(m => m.Status == true).ToListAsync();
+            var allListings = await _db.Pets.ToListAsync();
 
             return View(allListings);
         }
