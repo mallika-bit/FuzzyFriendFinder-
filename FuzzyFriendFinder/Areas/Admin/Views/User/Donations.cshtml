@@ -1,0 +1,52 @@
+﻿@model List<Donation>
+
+@{
+    ViewData["Title"] = "Donations";
+}
+
+<h1>Here are list of people who has donated. </h1>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Amount Donated
+            </th>
+            <th>
+                Who Donated
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
