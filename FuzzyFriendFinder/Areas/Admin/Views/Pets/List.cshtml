@@ -87,10 +87,21 @@
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <p class="card-text mr-1 mt-1" style="float:right;">
-                                <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit">Edit</button>
-                                <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete">Delete</button>
-                            </p>
+                            <div class="row mt-3">
+                                <div class="col-md-4 float-right">
+                                    @using (Html.BeginForm("Edit", "Pets", new { Id = pet.Id }, FormMethod.Post))
+                                    {
+                                        <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit" asp-route-Id="@pet.Id">Edit</button>
+                                    }
+                                </div>
+                                <div class="col-md-8 float-left">
+                                    @using (Html.BeginForm("Delete", "Pets", new { Id = pet.Id }, FormMethod.Post))
+                                    {
+                                        <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete" asp-route-Id="@pet.Id">Delete</button>
+                                    }
+                                </div>
+                            </div>
+                               
                         </div>
                     </div>
                 </div>
@@ -158,10 +169,20 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <p class="card-text mr-1 mt-1" style="float:right;">
-                                    <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit">Edit</button>
-                                    <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete">Delete</button>
-                                </p>
+                                <div class="row mt-3">
+                                    <div class="col-md-4 float-right">
+                                        @using (Html.BeginForm("Edit", "Pets", new { Id = pet.Id }, FormMethod.Post))
+                                        {
+                                            <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit" asp-route-Id="@pet.Id">Edit</button>
+                                        }
+                                    </div>
+                                    <div class="col-md-8 float-left">
+                                        @using (Html.BeginForm("Delete", "Pets", new { Id = pet.Id }, FormMethod.Post))
+                                        {
+                                            <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete" asp-route-Id="@pet.Id">Delete</button>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -226,10 +247,20 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <p class="card-text mr-1 mt-1" style="float:right;">
-                                    <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit">Edit</button>
-                                    <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete">Delete</button>
-                                </p>
+                                <div class="row mt-3">
+                                    <div class="col-md-4 float-right">
+                                        @using (Html.BeginForm("Edit", "Pets", new { Id = pet.Id }, FormMethod.Post))
+                                        {
+                                            <button class="btn btn-primary" asp-area="Admin" asp-controller="Pets" asp-action="Edit" asp-route-Id="@pet.Id">Edit</button>
+                                        }
+                                    </div>
+                                    <div class="col-md-8 float-left">
+                                        @using (Html.BeginForm("Delete", "Pets", new { Id = pet.Id }, FormMethod.Post))
+                                        {
+                                            <button class="btn btn-danger" asp-area="Admin" asp-controller="Pets" asp-action="Delete" asp-route-Id="@pet.Id">Delete</button>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
