@@ -105,5 +105,9 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
             }
             return View(createPet);
         }
+        public IActionResult Interest()
+        {
+            return View(_db.Adoptions.Include(m => m.ApplicationUser).Include(m => m.Pet).ToList());
+        }
     }
 }
