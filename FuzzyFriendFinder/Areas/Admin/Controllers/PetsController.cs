@@ -123,10 +123,127 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var createPet = new CreatePet();
-            createPet.Pet = pet;
+            var editPet = new EditPet();
+            editPet.Pet = pet;
+            editPet.Id = pet.Id;
 
-            return View(createPet);
+            return View(editPet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdatePet(EditPet editPet)
+        {
+            if (ModelState.IsValid)
+            {
+              
+                var petToUpdate = _db.Pets.Where(pet => pet.Id == editPet.Id).FirstOrDefault();
+
+                petToUpdate.Breed = editPet.Pet.Breed;
+                petToUpdate.Category = _db.Categories.Where(category => category.Id == editPet.Pet.CategoryId).FirstOrDefault();
+                petToUpdate.CategoryId = editPet.Pet.CategoryId;
+                petToUpdate.Color = editPet.Pet.Color;
+                petToUpdate.Description = editPet.Pet.Description;
+                petToUpdate.Gender = editPet.Pet.Gender;
+                petToUpdate.Months = editPet.Pet.Months;
+                petToUpdate.Name = editPet.Pet.Name;
+                petToUpdate.Status = editPet.Pet.Status;
+                petToUpdate.Weeks = editPet.Pet.Weeks;
+                petToUpdate.Weight = editPet.Pet.Weight;
+                petToUpdate.Years = editPet.Pet.Years;
+                
+                                
+                var existingImageUrls = editPet.Pet.ImageUrls;
+
+                petToUpdate.ImageUrls = "";
+
+                if (existingImageUrls == null)
+                {
+                    if (editPet.Pictures == null)
+                    {
+                        throw new Exception("You need to have atleast one image(existing or new)");
+                    }
+                    else
+                    {
+                        editPet.Pictures.ForEach(picture =>
+                        {
+                            var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
+                            var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
+                            using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
+                            {
+                                picture.CopyTo(stream);
+                            }
+
+                            var pathToSave = "/images/" + uniqueFilename;
+
+                            if (picture.FileName != editPet.Pictures.Last().FileName)
+                            {
+                                petToUpdate.ImageUrls += pathToSave + ", ";
+                            }
+                            else
+                            {
+                                petToUpdate.ImageUrls += pathToSave;
+                            }
+
+                        });
+
+                    }
+                }
+                else
+                {
+                    if (editPet.Pictures == null)
+                    {
+                        //directly update the database with what is in createPet.Pet.ImageUrls
+                        petToUpdate.ImageUrls = existingImageUrls;
+                    }
+                    else
+                    {
+                        //combine existing image urls with new image urls and update database.
+
+                        editPet.Pictures.ForEach(picture =>
+                        {
+                            var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
+                            var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
+                            using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
+                            {
+                                picture.CopyTo(stream);
+                            }
+
+                            var pathToSave = "/images/" + uniqueFilename;
+
+                            if (picture.FileName != editPet.Pictures.Last().FileName)
+                            {
+                                petToUpdate.ImageUrls += pathToSave + ", ";
+                            }
+                            else
+                            {
+                                petToUpdate.ImageUrls += pathToSave;
+                            }
+
+                        });
+
+                        petToUpdate.ImageUrls += ", " + existingImageUrls;
+
+                    }
+                }
+
+                _db.SaveChanges();
+                return RedirectToAction(nameof(List));
+            }
+
+            return View("Edit", new { id = editPet.Id });
+        }
+
+        // GET: Student/Delete/5
+        public ActionResult Delete(int id)
+        {
+            _db.Pets.Remove(_db.Pets.Where(pet => pet.Id == id).FirstOrDefault());
+
+            _db.SaveChanges();
+
+            return RedirectToAction("List");
         }
     }
 }
