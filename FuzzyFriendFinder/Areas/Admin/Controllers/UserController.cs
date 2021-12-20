@@ -26,5 +26,10 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
         {
             return View(_db.Donations.Include(m => m.ApplicationUser).ToList());
         }
+        
+        public IActionResult Interest()
+        {
+            return View(_db.Adoptions.Include(m => m.ApplicationUser).Include(m => m.Pet).ToList());
+        }
     }
 }
