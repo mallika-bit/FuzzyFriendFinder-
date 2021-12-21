@@ -40,6 +40,21 @@ namespace FuzzyFriendFinder
 
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
+
+            services.ConfigureApplicationCookie(options =>
+
+            {
+
+                options.LoginPath = $"/Identity/Account/Login";
+
+                options.LogoutPath = $"/Identity/Account/Logout";
+
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+
+            });
+
+
+
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromSeconds(3);//You can set Time   
             });
@@ -68,8 +83,9 @@ namespace FuzzyFriendFinder
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
 
             app.UseAuthentication();
+            
             app.UseAuthorization();
-
+            
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
