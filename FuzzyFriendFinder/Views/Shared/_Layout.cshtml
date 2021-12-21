@@ -1,4 +1,4 @@
-﻿@using FuzzyFriendFinder.Utility
+@using FuzzyFriendFinder.Utility
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">FuzzyFriendFinder</a>
+                <a class="navbar-brand" href="#">Navbar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -23,44 +23,42 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" asp-area="Customer" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link active" href="#">
                                 Home
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="About"> About</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="AllListings" asp-area="Customer">AllListings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Cats">Cats</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Cats" asp-area="Customer">Cats</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Dogs">Dogs</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Dogs" asp-area="Customer">Dogs</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="AllListings">All Listings</a>
-                        </li>
-                
-                @if (User.IsInRole(SD.ManagerUser))
-                {
+                        @if (User.IsInRole(SD.ManagerUser))
+                        {
 
-                    <li class="nav-item dropdown text-white-50">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Manage
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                            <a class="dropdown-item" asp-action="Create" asp-controller="Pets" asp-area="Admin">New Listing</a>
-                            <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Manage Listing</a>
-                            <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Pet Requests</a>
-                            <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Donations</a>
+                            <li class="nav-item dropdown text-white-50">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Manage
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
+                                    <a class="dropdown-item" asp-action="Create" asp-controller="Pets" asp-area="Admin">New Listing</a>
+                                    <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Manage Listing</a>
+                                    <a class="dropdown-item" asp-action="Interest" asp-controller="Pets" asp-area="Admin">Pet Requests</a>
+                                    <a class="dropdown-item" asp-action="Donations" asp-controller="User" asp-area="Admin">Donations</a>
+                                </div>
 
-
-                        </div>
-
-                    </li>
-                }
-                </ul>
-            </div>
+                            </li>
+                        }
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text" placeholder="Find Pets">
+                        <button type="button" class="btn btn-dark">Search</button>
+                    </form>
+                </div>
             </div>
         </nav>
         </li>
@@ -72,7 +70,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
-            <img src="~/images/Fuzzy Friend Finder.png" width="180" height="180" align="right" alt="Fuzzy Friend Finder" />
+            <img src="~/images/Fuzzy Friend Finder.png" width="160" height="160" align="right" alt="Fuzzy Friend Finder" />
         </main>
     </div>
 
