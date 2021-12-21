@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FuzzyFriendFinder.Areas.Customer.Controllers
 {
+    [Authorize]
     [Area("Customer")]
     public class DonationController : Controller
     {

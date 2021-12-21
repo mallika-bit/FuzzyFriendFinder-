@@ -1,5 +1,7 @@
 ﻿using FuzzyFriendFinder.Data;
 using FuzzyFriendFinder.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using Twilio.Rest.Api.V2010.Account;
 
 namespace FuzzyFriendFinder.Areas.Customer.Controllers
 {
+    
     [Area("Customer")]
     public class AdoptionController : Controller
     {
@@ -24,8 +27,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
             _db = db;
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Index(int id)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -48,22 +50,26 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
             //updating pet status
             petid.Status = false;
             _db.SaveChanges();
-           // _db.Pets.Update(petid);
+
+
+            HttpContext.Session.SetString("PetRequestMessage", "Thank you for your adoption request. Soon we will contact you  ");
+
+            // _db.Pets.Update(petid);
 
 
 
             //Send SMS to Customer
 
-            string accountSid = "AC0f3a8bd2534fd3e458ef150e4df35f5d";
-            string authToken = "134a97ae064efb81ba1e1ab5893da3d4";
+            /**  string accountSid = "AC0f3a8bd2534fd3e458ef150e4df35f5d";
+              string authToken = "134a97ae064efb81ba1e1ab5893da3d4";
 
-            TwilioClient.Init(accountSid, authToken);
+              TwilioClient.Init(accountSid, authToken);
 
-            var message = MessageResource.Create(
-                body: "Hello, Thank you for your request, soon we will contact you ",
-                from: new Twilio.Types.PhoneNumber("+15203919108"),
-                to: new Twilio.Types.PhoneNumber("+12482272837")
-            );
+              var message = MessageResource.Create(
+                  body: "Hello, Thank you for your request, soon we will contact you ",
+                  from: new Twilio.Types.PhoneNumber("+15203919108"),
+                  to: new Twilio.Types.PhoneNumber("+12482272837")
+              );  ***/
 
             return RedirectToAction("Index","Home");
         }

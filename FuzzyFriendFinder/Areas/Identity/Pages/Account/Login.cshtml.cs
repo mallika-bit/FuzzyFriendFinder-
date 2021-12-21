@@ -83,7 +83,13 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+
+                    //if (returnUrl.ToLower().Contains("adoption"))
+                    //{
+                        //return RedirectToAction("Index", "Adoption", new { Area = "Customer", id = 6 });
+                    //}
+                    //else
+                        return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
