@@ -19,8 +19,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
     {
         private readonly ApplicationDbContext _db;
 
-        //[BindProperty]
-        //public Adoption adoption { get; set; }
+       
 
         public AdoptionController(ApplicationDbContext db)
         {
@@ -54,7 +53,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
 
             HttpContext.Session.SetString("PetRequestMessage", "Thank you for your adoption request. Soon we will contact you  ");
 
-            // _db.Pets.Update(petid);
+           
 
 
 
