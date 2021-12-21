@@ -1,4 +1,4 @@
-﻿using FuzzyFriendFinder.Data;
+using FuzzyFriendFinder.Data;
 using FuzzyFriendFinder.Models;
 using FuzzyFriendFinder.ViewModels;
 using Microsoft.AspNetCore.Http;

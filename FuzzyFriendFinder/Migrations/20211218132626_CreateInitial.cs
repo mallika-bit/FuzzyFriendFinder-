@@ -7,6 +7,7 @@ namespace FuzzyFriendFinder.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            Down(migrationBuilder);
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new

@@ -1,0 +1,54 @@
+@model List<Adoption>
+@{ ViewData["Title"] = "Pet Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<body>
+
+    <br />
+    The Below people shown interest on the pets.
+    <br /><br />
+    <table>
+        <thead>
+            <tr>
+                <th>Pet Name</th>
+                <th>Customer Name</th>
+                <th>Pet Request Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var adoption in Model)
+            {
+<tr>
+    <td>
+        @adoption.Pet.Name
+    </td>
+    <td>
+        @adoption.ApplicationUser.FirstName
+    </td>
+    <td>
+        @adoption.Date.ToShortDateString()
+    </td>
+</tr>
+       }
+        </tbody>
+    </table>
+</body>
+
+
