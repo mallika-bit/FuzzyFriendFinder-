@@ -17,3 +17,11 @@ $('.existing_image a').click(function (e) {
         $('.no_existing_images').removeClass('d-none');
     }
 });
+
+if ($("#no_pictures").length > 0)
+{
+    if ($("#no_pictures").hasClass("field-validation-error"))
+    {
+        $('.no_existing_images').removeClass('d-none');
+    }
+}

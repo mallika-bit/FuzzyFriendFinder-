@@ -14,7 +14,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Pet.CategoryId" class="col-form-label"></label>
+                <label asp-for="Pet.CategoryId" class="col-form-label">Category</label>
             </div>
             <div class="col-5 mt-2">
                 <div class="row">
@@ -25,9 +25,9 @@
                         <input asp-for="Pet.CategoryId" class="ml-3" type="radio" value="2" />  Cat
 
                     </div>
-                </div>                
+                </div>
+                <span asp-validation-for="Pet.CategoryId" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Category" class="text-danger"></span>
         </div>
 
 
@@ -37,8 +37,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Name" class="form-control" />
+                <span asp-validation-for="Pet.Name" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Name" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -55,8 +55,8 @@
 
                     </div>
                 </div>
+                <span asp-validation-for="Pet.Gender" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Gender" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -65,8 +65,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Breed" class="form-control" />
+                <span asp-validation-for="Pet.Breed" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Breed" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -74,7 +74,6 @@
                 <label class="col-form-label">Age</label>
             </div>
             <div class="col-5">
-                @*<input asp-for="Pet.Age" class="form-control" />*@
                 <div class="row">
                     <div class="col-4">
                         <label asp-for="Pet.Years" class="col-form-label">years:</label>
@@ -138,10 +137,10 @@
                         </select>
                     </div>
                 </div>
+                <span asp-validation-for="Pet.Years" class="text-danger"></span>
+                <span asp-validation-for="Pet.Months" class="text-danger"></span>
+                <span asp-validation-for="Pet.Weeks" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Years" class="text-danger"></span>
-            <span asp-validation-for="Pet.Months" class="text-danger"></span>
-            <span asp-validation-for="Pet.Weeks" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -150,8 +149,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Weight" class="form-control" />
+                <span asp-validation-for="Pet.Weight" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Weight" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -160,8 +159,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Color" class="form-control" />
+                <span asp-validation-for="Pet.Color" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Color" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -170,8 +169,8 @@
             </div>
             <div class="col-5">
                 <textarea asp-for="Pet.Description" class="form-control"></textarea>
+                <span asp-validation-for="Pet.Description" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Description" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -179,23 +178,15 @@
                 <label asp-for="Pictures" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input type="file" asp-for="Pictures" multiple>
+                <input type="file" asp-for="Pictures" multiple><br />
                 <input type="hidden" asp-for="Pet.ImageUrls" value="Sample Url" />
+                <span asp-validation-for="Pictures" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pictures" class="text-danger"></span>
         </div>
-
-
-
-        @*<div class="form-group row">
-                <div class="col-5 offset-2">
-                    <partial name="_CreateAndBackToListButton" />
-                </div>
-            </div>*@
     </div>
     <div class="form-group row">
         <div class="col-3 offset-2">
-            <button type="submit" class="btn btn-primary form-control ">Create</button>
+            <button type="submit" class="btn btn-primary form-control">Create</button>
         </div>
     </div>
   

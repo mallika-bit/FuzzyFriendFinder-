@@ -12,10 +12,10 @@
 <form method="post" asp-action="UpdatePet" enctype="multipart/form-data">
     <div class=" backgroundWhite">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="@Model.Pet.Id" name="Id" value="@Model.Pet.Id" /> 
+        <input type="hidden" asp-for="@Model.Pet.Id" name="Id" value="@Model.Pet.Id" />
         <div class="form-group row">
             <div class="col-2">
-                <label asp-for="Pet.CategoryId" class="col-form-label"></label>
+                <label asp-for="Pet.CategoryId" class="col-form-label">Category</label>
             </div>
             <div class="col-5 mt-2">
                 <div class="row">
@@ -28,8 +28,8 @@
 
                     </div>
                 </div>
+                <span asp-validation-for="Pet.CategoryId" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Category" class="text-danger"></span>
         </div>
 
 
@@ -39,8 +39,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Name" class="form-control" />
+                <span asp-validation-for="Pet.Name" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Name" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -57,8 +57,26 @@
 
                     </div>
                 </div>
+                <span asp-validation-for="Pet.Gender" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Gender" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pet.Status" class="col-form-label"></label>
+            </div>
+            <div class="col-5 mt-2">
+                <div class="row">
+                    <div class="col-3">
+                        <input asp-for="Pet.Status" class="" type="radio" value="true" />  Available
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="Pet.Status" class="ml-3" type="radio" value="false" />  Pending
+
+                    </div>
+                </div>
+                <span asp-validation-for="Pet.Status" class="text-danger"></span>
+            </div>
         </div>
 
         <div class="form-group row">
@@ -67,8 +85,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Breed" class="form-control" />
+                <span asp-validation-for="Pet.Breed" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Breed" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -76,7 +94,6 @@
                 <label class="col-form-label">Age</label>
             </div>
             <div class="col-5">
-                @*<input asp-for="Pet.Age" class="form-control" />*@
                 <div class="row">
                     <div class="col-4">
                         <label asp-for="Pet.Years" class="col-form-label">years:</label>
@@ -140,10 +157,10 @@
                         </select>
                     </div>
                 </div>
+                <span asp-validation-for="Pet.Years" class="text-danger"></span>
+                <span asp-validation-for="Pet.Months" class="text-danger"></span>
+                <span asp-validation-for="Pet.Weeks" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Years" class="text-danger"></span>
-            <span asp-validation-for="Pet.Months" class="text-danger"></span>
-            <span asp-validation-for="Pet.Weeks" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -152,8 +169,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Weight" class="form-control" />
+                <span asp-validation-for="Pet.Weight" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Weight" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -162,8 +179,8 @@
             </div>
             <div class="col-5">
                 <input asp-for="Pet.Color" class="form-control" />
+                <span asp-validation-for="Pet.Color" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Color" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -172,8 +189,8 @@
             </div>
             <div class="col-5">
                 <textarea asp-for="Pet.Description" class="form-control"></textarea>
+                <span asp-validation-for="Pet.Description" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pet.Description" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
@@ -181,9 +198,9 @@
                 <label asp-for="Pictures" class="col-form-label"></label>
             </div>
             <div class="col-5">
-                <input type="file" asp-for="Pictures" multiple>
+                <input type="file" asp-for="Pictures" multiple><br />
+                <span id="no_pictures" asp-validation-for="Pictures" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Pictures" class="text-danger"></span>
         </div>
     </div>
 
@@ -194,8 +211,9 @@
         <div class="col-5">
             <div class="row">
                 @{
-                        var imageIndex = 1;
-                        foreach(var image in Model.Pet.ImageUrls.Split(","))
+                    if (Model.Pet.ImageUrls != null)
+                    {
+                        foreach (var image in Model.Pet.ImageUrls.Split(","))
                         {
                             var trimmedImage = image.Trim();
                             <div class="col-md-1 p-5 existing_image" id="@trimmedImage">
@@ -203,6 +221,13 @@
                                 <a href="#" class="link-danger small">Remove</a>
                             </div>
                         }
+                    }
+                    @*else
+                    {
+                        <div class="no_existing_images">
+                            <label class="col-form-label">No existing images.</label>
+                        </div>
+                    }*@
                 }
                 <div class="no_existing_images d-none">
                     <label class="col-form-label">No existing images.</label>
