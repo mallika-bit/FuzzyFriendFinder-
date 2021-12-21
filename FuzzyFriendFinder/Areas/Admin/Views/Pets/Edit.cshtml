@@ -95,10 +95,10 @@
             </div>
             <div class="col-5">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-4"> 
                         <label asp-for="Pet.Years" class="col-form-label">years:</label>
                         <select name="Pet.Years">
-                            <option selected>0</option>
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -120,11 +120,12 @@
                             <option value="19">19</option>
                             <option value="20">20</option>
                         </select>
+                        <input type="hidden" value="@Model.Pet.Years" id="ddlYearsValue" />
                     </div>
                     <div class="col-4">
                         <label asp-for="Pet.Months" class="col-form-label">months:</label>
                         <select name="Pet.Months">
-                            <option selected>0</option>
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -137,11 +138,12 @@
                             <option value="10">10</option>
                             <option value="11">11</option>
                         </select>
+                        <input type="hidden" value="@Model.Pet.Months" id="ddlMonthsValue" />
                     </div>
                     <div class="col-4">
                         <label asp-for="Pet.Weeks" class="col-form-label">weeks:</label>
                         <select name="Pet.Weeks">
-                            <option selected>0</option>
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -155,6 +157,7 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>
+                        <input type="hidden" value="@Model.Pet.Weeks" id="ddlWeeksValue" />
                     </div>
                 </div>
                 <span asp-validation-for="Pet.Years" class="text-danger"></span>

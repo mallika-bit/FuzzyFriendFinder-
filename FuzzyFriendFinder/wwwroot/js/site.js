@@ -25,3 +25,16 @@ if ($("#no_pictures").length > 0)
         $('.no_existing_images').removeClass('d-none');
     }
 }
+
+if ($("#ddlYearsValue").length > 0)
+{
+    $("select[name='Pet.Years']").val($("#ddlYearsValue").val());
+}
+
+if ($("#ddlMonthsValue").length > 0) {
+    $("select[name='Pet.Months']").val($("#ddlMonthsValue").val());
+}
+
+if ($("#ddlWeeksValue").length > 0) {
+    $("select[name='Pet.Weeks']").val($("#ddlWeeksValue").val());
+}
