@@ -44,6 +44,21 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreatePet(CreatePet createPet)
         {
+            if (createPet.Pet.Years == 0 && createPet.Pet.Weeks == 0 && createPet.Pet.Months == 0)
+            {
+                ModelState.AddModelError("Pet.Weeks", "Age is required.");
+            }
+
+            if (createPet.Pet.CategoryId == 0)
+            {
+                ModelState.AddModelError("Pet.CategoryId", "Category field is required.");
+            }
+
+            if (createPet.Pictures == null)
+            {
+                ModelState.AddModelError("Pictures", "Atleast one image is required.");
+            }
+
             if (_db.Categories.ToList().Count() == 0)
             {
                 _db.Categories.Add(new Category { Name = "Dog" });
@@ -96,7 +111,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                     {
                         pet.ImageUrls += pathToSave;
                     }
-                    
+
                 });
 
                 _db.Pets.Add(pet);
@@ -106,10 +121,14 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 return RedirectToAction(nameof(List));
 
             }
-            return View(createPet);
+            else
+            {
+                return View("Create");
+            }
+
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -134,9 +153,24 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdatePet(EditPet editPet)
         {
+            if (editPet.Pet.Years == 0 && editPet.Pet.Weeks == 0 && editPet.Pet.Months == 0)
+            {
+                ModelState.AddModelError("Pet.Weeks", "Age is required.");
+            }
+
+            if (editPet.Pet.CategoryId == 0)
+            {
+                ModelState.AddModelError("Pet.CategoryId", "Category field is required.");
+            }
+
+            if (editPet.Pictures == null && editPet.Pet.ImageUrls == null)
+            {
+                ModelState.AddModelError("Pictures", "Atleast one image is required.");
+            }
+
             if (ModelState.IsValid)
             {
-              
+
                 var petToUpdate = _db.Pets.Where(pet => pet.Id == editPet.Id).FirstOrDefault();
 
                 petToUpdate.Breed = editPet.Pet.Breed;
@@ -151,8 +185,8 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 petToUpdate.Weeks = editPet.Pet.Weeks;
                 petToUpdate.Weight = editPet.Pet.Weight;
                 petToUpdate.Years = editPet.Pet.Years;
-                
-                                
+
+
                 var existingImageUrls = editPet.Pet.ImageUrls;
 
                 petToUpdate.ImageUrls = "";
@@ -161,7 +195,8 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 {
                     if (editPet.Pictures == null)
                     {
-                        throw new Exception("You need to have atleast one image(existing or new)");
+                        ModelState.AddModelError("Pictures", "Atleast one image is required.");
+                        return View("Edit", editPet);
                     }
                     else
                     {
@@ -232,8 +267,11 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 _db.SaveChanges();
                 return RedirectToAction(nameof(List));
             }
+            else
+            {
+                return View("Edit", editPet);
+            }
 
-            return View("Edit", new { id = editPet.Id });
         }
 
         // GET: Student/Delete/5
