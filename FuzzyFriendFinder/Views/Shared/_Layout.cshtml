@@ -54,11 +54,14 @@
                             </li>
                         }
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="text" placeholder="Find Pets">
-                        <button type="button" class="btn btn-dark">Search</button>
+                    
+                    <form class="d-flex" asp-area="Customer" asp-controller="Home" asp-action="AllListings">
+
+                        <input class="form-control me-sm-2" type="text" placeholder="Find Pets" name="SearchString" >
+                        <input type="submit" value="Search" />
+                       @* <button type="button" class="btn btn-dark">Search</button>*@
                     </form>
-                </div>
+</div>
             </div>
         </nav>
         </li>

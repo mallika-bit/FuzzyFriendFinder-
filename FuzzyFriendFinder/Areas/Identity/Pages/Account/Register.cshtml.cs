@@ -112,11 +112,11 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
                     }
                     await _userManager.AddToRoleAsync(user, SD.CustomerUser);
 
-                    if (!await _rolemanager.RoleExistsAsync(SD.ManagerUser))
-                    {
-                        await _rolemanager.CreateAsync(new IdentityRole(SD.ManagerUser));
-                    }
-                    await _userManager.AddToRoleAsync(user, SD.ManagerUser);
+                    //if (!await _rolemanager.RoleExistsAsync(SD.ManagerUser))
+                    //{
+                    //    await _rolemanager.CreateAsync(new IdentityRole(SD.ManagerUser));
+                    //}
+                    //await _userManager.AddToRoleAsync(user, SD.ManagerUser);
 
                     /*_logger.LogInformation("User created a new account with password.");
 

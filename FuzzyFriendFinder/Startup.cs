@@ -38,6 +38,8 @@ namespace FuzzyFriendFinder
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+
+            services.AddScoped<IDbInitializer, DbInitializer>();
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             services.AddSession(options => {
@@ -47,7 +49,7 @@ namespace FuzzyFriendFinder
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -66,7 +68,7 @@ namespace FuzzyFriendFinder
             app.UseRouting();
 
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
-
+            dbInitializer.initialize();
             app.UseAuthentication();
             app.UseAuthorization();
 

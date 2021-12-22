@@ -57,11 +57,44 @@ namespace FuzzyFriendFinder.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AllListings()
+        public async Task<IActionResult> AllListings(String SearchString)
         {
-            var allListings = await _db.Pets.ToListAsync();
+           
+             var petNameSearch = from m in _db.Pets select m;
+             //var petGenderSearch = from m in _db.Pets select m;
+             var petColorSearch = from m in _db.Pets select m;
+             var petBreedSearch = from m in _db.Pets select m;
 
-            return View(allListings);
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                petNameSearch = petNameSearch.Where(s => s.Name.Contains(SearchString));
+                if (petNameSearch.Count()>0)
+                {
+                    return View(await petNameSearch.ToListAsync());
+                }
+               /* petGenderSearch = petGenderSearch.Where(s => s.Gender.Contains(SearchString));
+                if (petGenderSearch.Count() > 0)
+                {
+                    return View(await petGenderSearch.ToListAsync());
+                }*/
+
+                petColorSearch = petColorSearch.Where(s => s.Color.Contains(SearchString));
+                if (petColorSearch.Count() > 0)
+                {
+                    return View(await petColorSearch.ToListAsync());
+                }
+
+                petBreedSearch = petBreedSearch.Where(s => s.Breed.Contains(SearchString));
+                if (petBreedSearch.Count() > 0)
+                {
+                    return View(await petBreedSearch.ToListAsync());
+                }
+            }
+                var allListings = await _db.Pets.ToListAsync();
+
+                return View(allListings);
+
         }
 
         public IActionResult Privacy()
