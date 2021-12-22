@@ -1,13 +1,40 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
+<div>
+    @if (HttpContextAccessor.HttpContext.Session.GetString("PetRequestMessage") == null)
+    {
+    }
+    else
+    {
+        <p class="alert" style="color:darkred">@HttpContextAccessor.HttpContext.Session.GetString("PetRequestMessage")</p>
+    }
+
+
+
+    @if (HttpContextAccessor.HttpContext.Session.GetString("Message") == null)
+    {
+    }
+    else
+    {
+        <p class="alert " style="color:darkred">@HttpContextAccessor.HttpContext.Session.GetString("Message")</p>
+    }
+
+</div>
+
+
 
 <div class="text-center">
     <br />
     <h3 class="display-4">Fuzzy Friend Finder</h3>
     <h4>Finding Fur-Ever Homes</h4>
     <br />
-    <img src="~/images/family pet-carousel.jpg"/>
+    <img src="~/images/family pet-carousel.jpg" />
     <br />
     <br />
     <br />
@@ -19,6 +46,8 @@
     <br />
 
 </div>
+
+
 <div class="text-center">
-    <img src="~/images/Pet Mixer (72 x 34 in) (72 x 30 in) (72 x 25 in) (20 x 10 in) (1).png"  width="600"height="240" />
+    <img src="~/images/Pet Mixer (72 x 34 in) (72 x 30 in) (72 x 25 in) (20 x 10 in) (1).png" width="600" height="240" />
 </div>
