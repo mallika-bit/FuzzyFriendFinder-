@@ -37,6 +37,10 @@ namespace FuzzyFriendFinder.Controllers
         {
             return View();
         }
+        public IActionResult GetInvolved()
+        {
+            return View();
+        }
 
 
         public async Task<IActionResult> Cats()
