@@ -57,28 +57,28 @@ namespace FuzzyFriendFinder.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AllListings(String SearchString)
+        public async Task<IActionResult> AllListings()
         {
-           
-             var petNameSearch = from m in _db.Pets select m;
-             //var petGenderSearch = from m in _db.Pets select m;
-             var petColorSearch = from m in _db.Pets select m;
-             var petBreedSearch = from m in _db.Pets select m;
+                 var allListings = await _db.Pets.ToListAsync();
+
+                return View(allListings);
+        }
+        public async Task<IActionResult> SearchPageListing(String SearchString)
+        {
+
+            var petNameSearch = from m in _db.Pets select m;
+            var petColorSearch = from m in _db.Pets select m;
+            var petBreedSearch = from m in _db.Pets select m;
 
 
             if (!String.IsNullOrEmpty(SearchString))
             {
                 petNameSearch = petNameSearch.Where(s => s.Name.Contains(SearchString));
-                if (petNameSearch.Count()>0)
+                if (petNameSearch.Count() > 0)
                 {
                     return View(await petNameSearch.ToListAsync());
                 }
-               /* petGenderSearch = petGenderSearch.Where(s => s.Gender.Contains(SearchString));
-                if (petGenderSearch.Count() > 0)
-                {
-                    return View(await petGenderSearch.ToListAsync());
-                }*/
-
+                
                 petColorSearch = petColorSearch.Where(s => s.Color.Contains(SearchString));
                 if (petColorSearch.Count() > 0)
                 {
@@ -91,16 +91,14 @@ namespace FuzzyFriendFinder.Controllers
                     return View(await petBreedSearch.ToListAsync());
                 }
             }
-                var allListings = await _db.Pets.ToListAsync();
-
-                return View(allListings);
-
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
+
+
+           public IActionResult Privacy()
+            {
+                 return View();
+            }
 
 
 
