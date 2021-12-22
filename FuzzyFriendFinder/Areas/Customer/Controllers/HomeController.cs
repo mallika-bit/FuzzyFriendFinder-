@@ -45,7 +45,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> Cats()
         {
-            var cats = await _db.Pets.Where(x => x.Category.Id == 2).Where(m => m.Status == true).ToListAsync();
+            var cats = await _db.Pets.Where(x => x.Category.Id == 2).Where(m => m.Status == true).OrderByDescending(m=>m.Id).ToListAsync();
 
             ViewBag.cats = cats;
 
@@ -54,7 +54,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> Dogs()
         {
-            var dogs = await _db.Pets.Where(x => x.Category.Id == 1).Where(m => m.Status == true).ToListAsync();
+            var dogs = await _db.Pets.Where(x => x.Category.Id == 1).Where(m => m.Status == true).OrderByDescending(m=>m.Id).ToListAsync();
 
             ViewBag.dogs = dogs;
 
@@ -63,7 +63,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> AllListings()
         {
-            var allListings = await _db.Pets.ToListAsync();
+            var allListings = await _db.Pets.OrderByDescending(m=>m.Id).ToListAsync();
 
             return View(allListings);
         }
