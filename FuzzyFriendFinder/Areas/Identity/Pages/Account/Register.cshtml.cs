@@ -75,10 +75,18 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
             public string PhoneNumber { get; set; }
 
             [Required]
-            public string City { get; set; }
+            public string Address { get; set; }
 
             [Required]
             public string State { get; set; }
+
+
+            [Required]
+            public string City { get; set; }
+
+            [Required]
+            public string Zipcode { get; set; }
+
 
         }
 
@@ -101,7 +109,9 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
                     LastName = Input.LastName,
                     PhoneNumber = Input.PhoneNumber,
                     City = Input.City,
-                    State = Input.State
+                    State = Input.State,
+                    Address = Input.Address,
+                    Zipcode = Input.Zipcode
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -112,11 +122,11 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
                     }
                     await _userManager.AddToRoleAsync(user, SD.CustomerUser);
 
-                    if (!await _rolemanager.RoleExistsAsync(SD.ManagerUser))
-                    {
-                        await _rolemanager.CreateAsync(new IdentityRole(SD.ManagerUser));
-                    }
-                    await _userManager.AddToRoleAsync(user, SD.ManagerUser);
+                    //if (!await _rolemanager.RoleExistsAsync(SD.ManagerUser))
+                    //{
+                    //    await _rolemanager.CreateAsync(new IdentityRole(SD.ManagerUser));
+                    //}
+                    //await _userManager.AddToRoleAsync(user, SD.ManagerUser);
 
                     /*_logger.LogInformation("User created a new account with password.");
 

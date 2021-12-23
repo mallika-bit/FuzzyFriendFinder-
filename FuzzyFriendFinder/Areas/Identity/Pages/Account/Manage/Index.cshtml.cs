@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using FuzzyFriendFinder.Models;
+using FuzzyFriendFinder.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FuzzyFriendFinder.Areas.Identity.Pages.Account.Manage
 {
@@ -13,13 +16,18 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        //private readonly ApplicationUser applicationUser;
 
+        private readonly ApplicationDbContext _db;
+
+        
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager, ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _db = db;
         }
 
         public string Username { get; set; }
@@ -35,18 +43,39 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            public string FirstName { get; set; }
+            public string Email { get; set; }
+            public string LastName { get; set; }
+            public string Address { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public string Zipcode { get; set; }
+
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var email = await _userManager.GetEmailAsync(user);
+            var userId = user.Id;
+            var appUser = await _db.ApplicationUsers
+                .Where(x => x.Id == userId).FirstOrDefaultAsync();
+
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Email = email,
+                FirstName = ((ApplicationUser)user).FirstName,
+                LastName = ((ApplicationUser)user).LastName,
+                Address = appUser.Address,
+                City = appUser.City,
+                State = appUser.State,
+                Zipcode = appUser.Zipcode
+
             };
         }
 
@@ -65,6 +94,8 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+            var userId = user.Id;
+
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -77,6 +108,24 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+
+            var appUser = await _db.ApplicationUsers
+                .Where(x => x.Id == userId).FirstOrDefaultAsync();
+
+            appUser.FirstName = Input.FirstName;
+            appUser.LastName = Input.LastName;
+            appUser.Email = Input.Email;
+            appUser.PhoneNumber = Input.PhoneNumber;
+            appUser.Address = Input.Address;
+            appUser.City = Input.City;
+            appUser.State = Input.State;
+            appUser.Zipcode = Input.Zipcode;
+
+            _db.Update(appUser).State = EntityState.Modified;
+
+            await _db.SaveChangesAsync();
+
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
