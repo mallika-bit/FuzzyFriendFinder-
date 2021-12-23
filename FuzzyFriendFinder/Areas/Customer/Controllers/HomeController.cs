@@ -37,11 +37,15 @@ namespace FuzzyFriendFinder.Controllers
         {
             return View();
         }
+        public IActionResult GetInvolved()
+        {
+            return View();
+        }
 
 
         public async Task<IActionResult> Cats()
         {
-            var cats = await _db.Pets.Where(x => x.Category.Id == 2).Where(m => m.Status == true).ToListAsync();
+            var cats = await _db.Pets.Where(x => x.Category.Id == 2).Where(m => m.Status == true).OrderByDescending(m=>m.Id).ToListAsync();
 
             ViewBag.cats = cats;
 
@@ -50,7 +54,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> Dogs()
         {
-            var dogs = await _db.Pets.Where(x => x.Category.Id == 1).Where(m => m.Status == true).ToListAsync();
+            var dogs = await _db.Pets.Where(x => x.Category.Id == 1).Where(m => m.Status == true).OrderByDescending(m=>m.Id).ToListAsync();
 
             ViewBag.dogs = dogs;
 
@@ -59,15 +63,46 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> AllListings()
         {
-            var allListings = await _db.Pets.ToListAsync();
+            var allListings = await _db.Pets.OrderByDescending(m=>m.Id).ToListAsync();
 
-            return View(allListings);
+                return View(allListings);
         }
-
-        public IActionResult Privacy()
+        public async Task<IActionResult> SearchPageListing(String SearchString)
         {
+
+            var petNameSearch = from m in _db.Pets select m;
+            var petColorSearch = from m in _db.Pets select m;
+            var petBreedSearch = from m in _db.Pets select m;
+
+
+            if (!String.IsNullOrEmpty(SearchString))
+            {
+                petNameSearch = petNameSearch.Where(s => s.Name.Contains(SearchString));
+                if (petNameSearch.Count() > 0)
+                {
+                    return View(await petNameSearch.ToListAsync());
+                }
+                
+                petColorSearch = petColorSearch.Where(s => s.Color.Contains(SearchString));
+                if (petColorSearch.Count() > 0)
+                {
+                    return View(await petColorSearch.ToListAsync());
+                }
+
+                petBreedSearch = petBreedSearch.Where(s => s.Breed.Contains(SearchString));
+                if (petBreedSearch.Count() > 0)
+                {
+                    return View(await petBreedSearch.ToListAsync());
+                }
+            }
             return View();
         }
+
+
+           public IActionResult Privacy()
+            {
+                 return View();
+            }
 
 
 
