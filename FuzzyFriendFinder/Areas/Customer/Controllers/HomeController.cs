@@ -59,7 +59,7 @@ namespace FuzzyFriendFinder.Controllers
 
         public async Task<IActionResult> AllListings()
         {
-                 var allListings = await _db.Pets.OrderByDescending(m=>m.Id).ToListAsync();
+            var allListings = await _db.Pets.OrderByDescending(m=>m.Id).ToListAsync();
 
                 return View(allListings);
         }
