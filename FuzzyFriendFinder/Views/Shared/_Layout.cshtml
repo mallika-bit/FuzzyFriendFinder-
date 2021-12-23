@@ -10,23 +10,26 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header> 
+    <header>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="/">Fuzzy Friend Finder</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarColor01">
-                    <partial name="_LoginPartial" />
+
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="/">
                                 Home
                                 <span class="visually-hidden">(current)</span>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About" asp-area="Customer">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="AllListings" asp-area="Customer">AllListings</a>
@@ -36,7 +39,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Dogs" asp-area="Customer">Dogs</a>
+
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="GetInvolved" asp-area="Customer">GetInvolved</a>
+                        </li>
+
                         @if (User.IsInRole(SD.ManagerUser))
                         {
 
@@ -47,17 +55,18 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
                                     <a class="dropdown-item" asp-action="Create" asp-controller="Pets" asp-area="Admin">New Listing</a>
                                     <a class="dropdown-item" asp-action="List" asp-controller="Pets" asp-area="Admin">Manage Listing</a>
-                                    <a class="dropdown-item" asp-action="Interest" asp-controller="Pets" asp-area="Admin">Pet Requests</a>
+                                    <a class="dropdown-item" asp-action="Interest" asp-controller="User" asp-area="Admin">Pet Requests</a>
                                     <a class="dropdown-item" asp-action="Donations" asp-controller="User" asp-area="Admin">Donations</a>
                                 </div>
 
                             </li>
                         }
+
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="text" placeholder="Find Pets">
-                        <button type="button" class="btn btn-dark">Search</button>
-                    </form>
+                    <div class="d-flex">
+                        
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
             </div>
         </nav>
@@ -66,11 +75,29 @@
         </div>
         </div>
         </nav>
+        <img src="~/images/Fuzzy Friend Finder.png" width="160" height="160" align="right" alt="Fuzzy Friend Finder" /> 
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    
+
+                    <form class="form-inline" asp-area="Customer" asp-action="SearchPageListing" asp-controller="Home">
+                        <input class="form-control sm-2 w-75 " type="search" style="margin-left:5%" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0 "style="padding-left:2%" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+        </div>
     </header>
     <div class="container">
+
         <main role="main" class="pb-3">
             @RenderBody()
-            <img src="~/images/Fuzzy Friend Finder.png" width="160" height="160" align="right" alt="Fuzzy Friend Finder" />
+
         </main>
     </div>
 

@@ -30,7 +30,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
 
         public IActionResult List()
         {
-            return View(_db.Pets.Include(x => x.Category).ToList());
+            return View(_db.Pets.Include(x => x.Category).OrderByDescending(m=>m.Id).ToList());
         }
 
         //GET - CREATE
