@@ -11,6 +11,26 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
+/**************************************************************************************************************
+ * Title            : PetController
+ * Description      : When admin login , they can see Manage drop down in Navbar there are 4 items in drop down ,
+ *                    2 of them are Create, Manage Pet,If we click on either of them 
+ *                    that leads to PetController.
+ *                    CreatePet : will take the admin to create Pet form
+ *                    ManagePet : where admin can edit Pet and Delete Pet
+ *                    
+ *                    Create: Action method will leads to Create new pet form.
+ *                    CreatePet: Action method will create new Pet ,Store All details in Pet Table
+ *                    List: Action method will list all pets with edit and delete button so that admin can 
+ *                    edit and delete a pet
+ *                    Edit: Action method will leads to edit pet form with pre filled all pet details
+ *                    UpdatePet: Action method will update any changes we made to pet
+ *                    Delete:  Action mrthod will delete a pet from database
+ *                    
+ * Author           : Vijaya Laxmi                   
+ *************************************************************************************************************/
+
+
 namespace FuzzyFriendFinder.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -127,6 +147,8 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
             }
 
         }
+
+
 
         public IActionResult Edit(int? id)
         {

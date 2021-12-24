@@ -11,6 +11,34 @@ using FuzzyFriendFinder.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 
+/**************************************************************************************************
+ * Title            :  DonationController
+ * Description      :  Donation Button is in Area/Customer/Views/Home/GetInvolved View,Donation Button 
+ *                     allows customer to make donations for FuzzyFriendFinder website
+ *                     When donation button clicked on that takes customer to donation form(which is in 
+ *                     Area/Customer/Views/Donation/Index where they can 
+ *                     enter amount and make payment through stripe credit card transaction.
+ *                     This is done by based on the reference of spice project in udemy , where it uses stripe for 
+ *                     credit card transaction.
+ *                     
+ *                     Inorder to work with stripe we installed stripe.net package in our project and 
+ *                     we configured stripe settings in startup.cs file
+ *                     
+ *                     It has Two action methods
+ *                     Index - will take customer to  donation form
+ *                     Payment - will take care of payment processing and also store Customer name and Donation
+ *                     amount in Donations Database, And display the thank you message in home index page
+ *                     when donation is done.
+ *                     Customer should be authorized to make donations.
+ *                     
+ * Author           :  Mallika          
+ * 
+ * 
+ *******************************************************************************************/
+
+
+
+
 namespace FuzzyFriendFinder.Areas.Customer.Controllers
 {
     [Authorize]
@@ -40,6 +68,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Payment(string stripeToken)
         {
+            //Get the customer who logged in
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             Donation.UserId = claim.Value;
@@ -48,6 +77,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
             _db.Donations.Add(Donation);
 
 
+            //payment process
             var options = new ChargeCreateOptions
             {
                 Amount = Convert.ToInt32(Donation.Amount * 100),
