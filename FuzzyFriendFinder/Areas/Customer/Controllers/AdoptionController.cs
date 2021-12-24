@@ -51,24 +51,24 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
             _db.SaveChanges();
 
 
-            HttpContext.Session.SetString("PetRequestMessage", "Thank you for your adoption request. Soon we will contact you  ");
+            HttpContext.Session.SetString("PetRequestMessage", "Thank you for your request. we send SMS to you   ");
 
-           
+
 
 
 
             //Send SMS to Customer
 
             /**  string accountSid = "AC0f3a8bd2534fd3e458ef150e4df35f5d";
-              string authToken = "134a97ae064efb81ba1e1ab5893da3d4";
+              string authToken = "772fdee4710279bf8a3183150947091c";
 
               TwilioClient.Init(accountSid, authToken);
 
               var message = MessageResource.Create(
-                  body: "Hello, Thank you for your request, soon we will contact you ",
+                  body: $"Hello, Thank you for your pet request on Pet Name: {petid.Name},Breed of {petid.Breed} , soon we will contact you ",
                   from: new Twilio.Types.PhoneNumber("+15203919108"),
                   to: new Twilio.Types.PhoneNumber("+12482272837")
-              );  ***/
+              );  ***/  
 
             return RedirectToAction("Index","Home");
         }
