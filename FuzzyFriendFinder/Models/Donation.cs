@@ -5,6 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+/***********************************************************************
+ * Author: Mallika
+ ***********************************************************************/
+
+
 namespace FuzzyFriendFinder.Models
 {
     public class Donation
