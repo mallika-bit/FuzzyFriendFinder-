@@ -11,4 +11,15 @@ Customer
 Admin login Email:admin@gmail.com
 password: Admin@123
 
+### Planning and Designing
+  1.Mallika
+  2.Vijaya Laxmi
+  3.Geetha
+  4.Prasitha
+  5.JuleskFisher
+  6.Amelia
+  
+
+
+
 This project is done by under the guidence and support of Mentor Ravish
