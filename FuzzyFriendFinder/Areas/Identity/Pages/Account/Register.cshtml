@@ -7,6 +7,20 @@
 <br />
 <h2 class="text-info">Create a New Account</h2>
 <br />
+@if (ModelState.IsValid)
+{
+
+}else   {
+           <div class="col-xl-12" style="margin-top:40px;">
+            @foreach (var modeleState in ViewData.ModelState.Values)
+            {
+                foreach (var error in modeleState.Errors)
+                {
+                <h5 style="color:red;margin-top:4px;">@error.ErrorMessage</h5>
+                }
+            }
+           </div>
+        }
 
 <div class="row">
     <div class="col-md-6">
