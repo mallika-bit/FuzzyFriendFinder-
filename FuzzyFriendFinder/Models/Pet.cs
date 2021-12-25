@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 /**********************************************************************************
- * Author: Mallika
+ * Author: Mallika,Vijaya Laxmi
  * ********************************************************************************/
 
 namespace FuzzyFriendFinder.Models
