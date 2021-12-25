@@ -5,6 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+/***********************************************************************
+ * Author: Mallika
+ ***********************************************************************/
+
+
 namespace FuzzyFriendFinder.Models
 {
     public class Donation
@@ -12,6 +17,7 @@ namespace FuzzyFriendFinder.Models
         public int Id { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Amount should be greater than ${0}")]
         public int Amount { get; set; }
 
 

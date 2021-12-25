@@ -1,4 +1,5 @@
-﻿@model FuzzyFriendFinder.Models.Pet
+﻿<!----------Author: Mallika-------------------------->
+@model FuzzyFriendFinder.Models.Pet
 @{
     ViewData["Title"] = "Details";
 }
@@ -55,21 +56,46 @@
                         <p style="font-weight:bolder">About</p>
                         <p class="card-text">@Model.Description</p>
                         @if (Model.Status == true)
-                    {
-                        <p class="card-text" style="font-weight:bold;color:green">Available</p>
-                    }
-                    else
-                    {
-                        <p class="card-text" style="font-weight:bold;color:red"> Unavailable</p>
-                    }
+                        {
+                            <p class="card-text" style="font-weight:bold;color:green">Available</p>
+                        }
+                        else
+                        {
+                            <p class="card-text" style="font-weight:bold;color:red"> Unavailable</p>
+                        }
 
-                        <p class="card-text"><strong><span>Gender:</span></strong>@Model.Gender</p>
-                        <p class="card-text"><strong><span>Breed:</span></strong>@Model.Breed</p>
-                        <p class="card-text"><strong><span>Years:</span></strong>@Model.Years</p>
-                        <p class="card-text"><strong><span>Months:</span></strong>@Model.Months</p>
-                        <p class="card-text"><strong><span>Weeks:</span></strong>@Model.Weeks</p>
-                        <p class="card-text"><strong><span>Color:</span></strong>@Model.Color</p>
-                        <p class="card-text"><strong><span>Weight:</span></strong>@Model.Weight</p>
+                        <p class="card-text"><strong><span>Gender:</span></strong> @Model.Gender</p>
+                        <p class="card-text"><strong><span>Breed:</span></strong> @Model.Breed</p>
+                        @if (Model.Months == 0 && Model.Weeks == 0)
+                        {
+                            <p class="card-text"><strong><span>Age:</span></strong> @Model.Years<span>Years</span></p>
+                        }
+                        else if (Model.Years == 0 && Model.Months == 0)
+                        {
+                            <p class="card-text"><strong><span>Age:</span></strong> @Model.Weeks<span>Weeks</span></p>
+                        }
+                        else if (Model.Years == 0 && Model.Weeks == 0)
+                        {
+                            <p class="card-text"><strong><span>Age:</span></strong> @Model.Months<span>Months</span></p>
+                        }
+                        else if (Model.Months == 0)
+                        {
+                            <p class="card-text"><strong><span>Age:</span></strong> @Model.Years<span>Years</span> @Model.Weeks<span>Weeks</span></p>
+                        }
+                        else if (Model.Weeks == 0)
+                        {
+                            <p class="card-text"><strong><span>Age:</span></strong> @Model.Years<span>Years</span> @Model.Months<span>Months</span></p>
+                        }
+                        else if (Model.Years == 0)
+                        {
+                            <p class="card-text"><strong><span>Age:</span></strong> @Model.Months<span>Months</span> @Model.Weeks<span>Weeks</span></p>
+                        }
+                        else
+                        {
+                        <p class="card-text"><strong><span>Age:</span></strong> @Model.Years<span>Years</span>  @Model.Months<span>Months</span>        @Model.Weeks<span>Weeks</span></p>
+                        }
+                        <p class="card-text"><strong><span>Color:</span></strong> @Model.Color</p>
+                        <p class="card-text"><strong><span>Weight:</span></strong> @Model.Weight <span>lbs</span></p>
 
 
                     </div>
