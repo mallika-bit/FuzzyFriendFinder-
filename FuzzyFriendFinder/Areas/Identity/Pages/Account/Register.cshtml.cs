@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.Runtime.Serialization.Json;
 
 namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
 {
@@ -53,6 +54,7 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
+
             public string Email { get; set; }
 
             [Required]
@@ -113,6 +115,7 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
                     Address = Input.Address,
                     Zipcode = Input.Zipcode
                 };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -122,44 +125,21 @@ namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
                     }
                     await _userManager.AddToRoleAsync(user, SD.CustomerUser);
 
-                    //if (!await _rolemanager.RoleExistsAsync(SD.ManagerUser))
-                    //{
-                    //    await _rolemanager.CreateAsync(new IdentityRole(SD.ManagerUser));
-                    //}
-                    //await _userManager.AddToRoleAsync(user, SD.ManagerUser);
-
-                    /*_logger.LogInformation("User created a new account with password.");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");*/
-
-                    /*if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-*/
+            
                     await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-  /*                  }*/
                 }
                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
+                    return Page();
                 }
+
+              
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
+        
     }
 }
