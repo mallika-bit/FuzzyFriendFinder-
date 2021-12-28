@@ -39,12 +39,12 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
 
         public IActionResult Donations()
         {
-            return View(_db.Donations.Include(m => m.ApplicationUser).ToList());
+            return View(_db.Donations.Include(m => m.ApplicationUser).OrderByDescending(m=>m.Id).ToList());
         }
         
         public IActionResult Interest()
         {
-            return View(_db.Adoptions.Include(m => m.ApplicationUser).Include(m => m.Pet).ToList());
+            return View(_db.Adoptions.Include(m => m.ApplicationUser).OrderByDescending(m=>m.Id).Include(m => m.Pet).ToList());
         }
     }
 }
