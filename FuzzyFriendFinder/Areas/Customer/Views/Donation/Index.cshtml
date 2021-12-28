@@ -63,7 +63,7 @@
         <script>
         function validate() {
             var amount = document.getElementById("amount").value;
-            if (amount == 0 || amount == null || amount > 999999) {
+            if (amount <= 0 || amount == null || amount > 999999) {
                 alert("Please Enter Valid  Amount(Valid amount between 1-999999)")
                 return false;
             }
