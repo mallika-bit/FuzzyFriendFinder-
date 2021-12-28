@@ -5,7 +5,8 @@
 
 $('.existing_image a').click(function (e) {
     e.preventDefault();
-    if ($('.existing_image').length == 1) {
+    var lastItemId = $('.existing_image:last').attr("id");
+    if ($('.existing_image').length == 1 || $(this).parent().attr("id") == lastItemId) {
         $('#existingImageUrls').val($('#existingImageUrls').val().replace($(this).parent().attr("id"), ""));
     }
     else {

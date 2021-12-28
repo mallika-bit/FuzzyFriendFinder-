@@ -228,16 +228,17 @@
                         }
                     }
                     @*else
-                    {
-                        <div class="no_existing_images">
-                            <label class="col-form-label">No existing images.</label>
-                        </div>
-                    }*@
+            {
+                <div class="no_existing_images">
+                    <label class="col-form-label">No existing images.</label>
+                </div>
+            }*@
                 }
                 <div class="no_existing_images d-none">
                     <label class="col-form-label">No existing images.</label>
                 </div>
-                <input id="existingImageUrls" type="hidden" asp-for="Pet.ImageUrls" value="@Model.Pet.ImageUrls" />
+                <input id="existingImageUrls" type="hidden" asp-for="ExistingImageUrls" value="@Model.ExistingImageUrls" />
+                <input id="existingImageUrlsDummy" type="hidden" asp-for="Pet.ImageUrls" value="@Model.Pet.ImageUrls" />
             </div>
         </div>
     </div>
