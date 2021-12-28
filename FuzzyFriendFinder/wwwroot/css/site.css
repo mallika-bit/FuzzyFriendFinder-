@@ -24684,3 +24684,44 @@ legend {
     color: inherit;
 }
 
+/*img.pets {
+    border: 3px solid #ddd;
+    border-radius: 6px;
+    padding: 5px;
+}*/
+
+
+@media(min-width:468px) {
+    .container-1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+       
+    }
+}
+
+    .container-1 div {
+        border: 1px #ccc solid;
+        padding-top: 4px;
+        padding-left:10px;
+        padding-bottom:4px;
+        padding-right:10px;
+        border-radius:6px;
+     }
+
+
+.box-1 {
+    flex: 2;
+    order: 2;
+  
+}
+
+    .box-2 {
+        flex: 2;
+        order: 2;
+    }
+
+    .box-3 {
+        flex: 2;
+        order: 2;
+    }

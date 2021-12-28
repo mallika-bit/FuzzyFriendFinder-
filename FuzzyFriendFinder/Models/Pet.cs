@@ -5,6 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
+/**********************************************************************************
+ * Author: Mallika,Vijaya Laxmi
+ * ********************************************************************************/
+
 namespace FuzzyFriendFinder.Models
 {
     public class Pet

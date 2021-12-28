@@ -10,9 +10,44 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+/******************************************************************************************************************************************
+ * Title:          Home Controller
+ * Description:    Home controller has Action methods related to links in  home page and navbar ,It has
+ *                 Index ,About -Display Respective Views And Hard coded HTML ,CSS
+ *                 GetInvolved contains Donation Button, for this button  action method is in 'DonationController'.
+ *                 
+ *                 (Here available means status=true)
+ *                 Cats: This action method will retrieve All available cats from database and display in Cats View.
+ *                 Dogs: This action method will retrieve All available dogs from database and display in dogs View 
+ *                 AllListings: This action method will  retrieve All pets including available and unavailable from database , display in AllListings View
+ *                 
+ *                 Details: This action method will retrieve all  details about particular pet, when we clicked on details link in Alllistings,Dogs,Cats views  
+ *                          Details View has Interest Button ,When someone clicks on it it will go to 'AdoptionController'
+ *                          
+ *                 Search: This action method will search based on pet name, breed, color.Display results in SearchPageListing View
+ *                 
+ *                 Register: Register new user //these views can see in Identity/pages/register.cshtml
+ *                 Login: User can login       // Identity/pages/login.cshtml
+ * HomeController
+ *       Author        :   Prasita
+ * Views Author
+ * Index,Layout,
+ * About,GetInvolved 
+ * Logo                :   JulesKFisher, Amelia
+ * Cats,Dogs,
+ * AllListings         :   Prasita
+ * Details             :   Mallika
+ * Serach              :   Geeta
+ * Register/Login      :   Geeta
+ *******************************************************************************************************************************************/
+
+
+
+
 namespace FuzzyFriendFinder.Controllers
 {
-    //Test Push Branch
+    
     [Area("Customer")]
     public class HomeController : Controller
     {
@@ -26,17 +61,18 @@ namespace FuzzyFriendFinder.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var pet = await _db.Pets.Where(m => m.Status == true).ToListAsync();
+            
 
-            return View(pet);
+            return View();
         }
 
         public IActionResult About()
         {
             return View();
         }
+
         public IActionResult GetInvolved()
         {
             return View();
@@ -99,10 +135,10 @@ namespace FuzzyFriendFinder.Controllers
         }
 
 
-           public IActionResult Privacy()
-            {
+        public IActionResult Privacy()
+        {
                  return View();
-            }
+        }
 
 
 
@@ -112,6 +148,7 @@ namespace FuzzyFriendFinder.Controllers
 
             return View(petdet);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

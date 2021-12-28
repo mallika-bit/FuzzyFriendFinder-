@@ -11,6 +11,30 @@ using System.Threading.Tasks;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 
+/******************************************************************************************************
+ * Title                : AdoptionController
+ * Desciprion           : When someone clicks on Interest Button(Areas/Customer/Views/Home/Details.cshtml) which
+ *                        is in Details View , Which means customer shows Interest in adopting particular Pet,
+ *                        and request for it, This controller will do 4 things 
+ *                        1.Store the request Date along with customer Id, pet Id in Adoption database.
+ *                        2.Change the status of pet from available to unavailable (so in database pet status 
+ *                          will be false from true.
+ *                        3.Send SMS to Customer that saying soon we will contact them
+ *                        4.Displying message in Index Home page that Thank you for your request
+ *                        
+ *                        For SMS we installed twilio package in our project
+ *                        we used Auth Token , AccountSid which Twilio party provided
+ *                        we will email Auth Token , right now we commented out that section of code, 
+ *                        To test SMS please remove commented line 83 and 92, use New Auth Token which we 
+ *                        emailed.
+ *                        This is done by In guidence of Mentor Ravish 
+ * Author               : Mallika                        
+ * 
+ ***************************************************************************************************/
+
+
+
+
 namespace FuzzyFriendFinder.Areas.Customer.Controllers
 {
     
@@ -51,24 +75,24 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
             _db.SaveChanges();
 
 
-            HttpContext.Session.SetString("PetRequestMessage", "Thank you for your adoption request. Soon we will contact you  ");
+            HttpContext.Session.SetString("PetRequestMessage", "Thank you for your interest!You’ll receive a SMS confirmation soon.We’ll be in touch about the adoption process. ");
 
-           
+
 
 
 
             //Send SMS to Customer
 
             /**  string accountSid = "AC0f3a8bd2534fd3e458ef150e4df35f5d";
-              string authToken = "134a97ae064efb81ba1e1ab5893da3d4";
+                 string authToken = "772fdee4710279bf8a3183150947091c";
 
-              TwilioClient.Init(accountSid, authToken);
+                 TwilioClient.Init(accountSid, authToken);
 
               var message = MessageResource.Create(
-                  body: "Hello, Thank you for your request, soon we will contact you ",
+                  body: $"Hello, Thank you for your pet request on Pet Name: {petid.Name},Breed of {petid.Breed} , soon we will contact you ",
                   from: new Twilio.Types.PhoneNumber("+15203919108"),
                   to: new Twilio.Types.PhoneNumber("+12482272837")
-              );  ***/
+              );  ***/  
 
             return RedirectToAction("Index","Home");
         }
