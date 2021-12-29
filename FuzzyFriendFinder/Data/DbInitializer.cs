@@ -52,7 +52,7 @@ namespace FuzzyFriendFinder.Data
             {
                 UserName = "admin@gmail.com",
                 Email = "admin@gmail.com",
-                FirstName = "Geetha Anand",
+                FirstName = "Admin",
                 EmailConfirmed = true,
                 PhoneNumber = "1112223333"
             }, "Admin@123").GetAwaiter().GetResult();
