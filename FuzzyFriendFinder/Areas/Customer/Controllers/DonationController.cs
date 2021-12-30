@@ -31,6 +31,9 @@ using Microsoft.AspNetCore.Authorization;
  *                     when donation is done.
  *                     Customer should be authorized to make donations.
  *                     
+ *                     This controller will also do store the amount , user details in database.so that
+ *                     admin can track the records of who made donations and how much amount they donated
+ *                     
  * Author           :  Mallika          
  * 
  * 

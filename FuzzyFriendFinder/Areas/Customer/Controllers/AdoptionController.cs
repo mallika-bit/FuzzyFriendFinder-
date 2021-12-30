@@ -25,9 +25,9 @@ using Twilio.Rest.Api.V2010.Account;
  *                        For SMS we installed twilio package in our project
  *                        we used Auth Token , AccountSid which Twilio party provided
  *                        we will email Auth Token , right now we commented out that section of code, 
- *                        To test SMS please remove commented line 83 and 92, use New Auth Token which we 
+ *                        To test SMS please remove commented line 83 and 99, use New Auth Token which we 
  *                        emailed.
- *                        This is done by In guidence of Mentor Ravish 
+ *                        This is done by under the  guidence of Mentor Ravish 
  * Author               : Mallika                        
  * 
  ***************************************************************************************************/
@@ -83,7 +83,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
 
             //Send SMS to Customer
 
-            string accountSid = "AC0f3a8bd2534fd3e458ef150e4df35f5d";
+           /*** string accountSid = "AC0f3a8bd2534fd3e458ef150e4df35f5d";
             string authToken = "103fd28bdd418820ee49de0d5d83f2c6";
 
             //get the phoneNumber from database
@@ -96,7 +96,7 @@ namespace FuzzyFriendFinder.Areas.Customer.Controllers
                   body: $"Hello, Thank you for your pet request on Pet Name: {petid.Name},Breed of {petid.Breed} , soon we will contact you ",
                   from: new Twilio.Types.PhoneNumber("+15203919108"),
                   to: new Twilio.Types.PhoneNumber(phoneNumber)
-              );  
+              );  ***/
 
             return RedirectToAction("Index","Home");
         }
