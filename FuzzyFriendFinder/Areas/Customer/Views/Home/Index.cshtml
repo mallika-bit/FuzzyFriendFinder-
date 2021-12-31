@@ -13,7 +13,7 @@
     }
     else
     {
-        <p class="alert" style="color:darkred">@HttpContextAccessor.HttpContext.Session.GetString("PetRequestMessage")</p>
+        @*<p class="alert" style="color:darkred">@HttpContextAccessor.HttpContext.Session.GetString("PetRequestMessage")</p>*@
     }
 
 
@@ -23,7 +23,7 @@
     }
     else
     {
-        <p class="alert " style="color:darkred">@HttpContextAccessor.HttpContext.Session.GetString("Message")</p>
+        
     }
 
 </div>
@@ -52,3 +52,20 @@
 <div class="text-center">
     <img src="~/images/Pet Mixer (72 x 34 in) (72 x 30 in) (72 x 25 in) (20 x 10 in) (1).png" width="600" height="240" />
 </div>
+
+
+@section Scripts{
+
+    <script>
+        var donationMessage = '@HttpContextAccessor.HttpContext.Session.GetString("Message")';
+        if (donationMessage != '') {
+            bootbox.alert(donationMessage);
+        }
+
+       
+        var petInterestMessage = '@HttpContextAccessor.HttpContext.Session.GetString("PetRequestMessage")';
+        if (petInterestMessage != '') {
+            bootbox.alert(petInterestMessage);
+        }
+    </script>
+}

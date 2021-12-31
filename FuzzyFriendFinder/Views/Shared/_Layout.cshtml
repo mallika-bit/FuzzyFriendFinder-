@@ -65,7 +65,7 @@
 
                     </ul>
                     <div class="d-flex">
-                        
+
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
@@ -76,17 +76,17 @@
         </div>
         </div>
         </nav>
-        <img src="~/images/Fuzzy Friend Finder.png" width="160" height="160" align="right" alt="Fuzzy Friend Finder" /> 
+        <img src="~/images/Fuzzy Friend Finder.png" width="160" height="160" align="right" alt="Fuzzy Friend Finder" />
         <br />
         <div class="container">
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
-                    
+
 
                     <form class="form-inline" asp-area="Customer" asp-action="SearchPageListing" asp-controller="Home">
                         <input class="form-control sm-2 w-75 " type="search" style="margin-left:7%" placeholder="Search" aria-label="Search" name="SearchString">
-                        <button class="btn btn-outline-success my-2 my-sm-0 "style="margin-left:1%" type="submit">Search</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0 " style="margin-left:1%" type="submit">Search</button>
                     </form>
                 </div>
                 <div class="col-2"></div>
@@ -117,6 +117,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" type="text/javascript"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
