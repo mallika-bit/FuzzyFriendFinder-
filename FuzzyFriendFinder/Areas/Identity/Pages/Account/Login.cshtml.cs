@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+
+//Author  Geeta
+
 namespace FuzzyFriendFinder.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
