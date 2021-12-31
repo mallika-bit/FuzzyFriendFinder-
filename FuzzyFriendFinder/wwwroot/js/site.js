@@ -14,6 +14,11 @@ $('.existing_image a').click(function (e) {
     }
     
     $(this).parent().remove();
+
+    if ($("#existingImageUrls").endsWith(",")) {
+        $("#existingImageUrls").val($("#existingImageUrls").val().substr(0, $("#existingImageUrls").val().length - 1));
+    }
+
     if ($('.existing_image').length == 0) {
         $('.no_existing_images').removeClass('d-none');
     }

@@ -218,9 +218,15 @@
                 @{
                     if (Model.Pet.ImageUrls != null)
                     {
+                        while (Model.Pet.ImageUrls.EndsWith(',') || Model.Pet.ImageUrls.EndsWith(' '))
+                        {
+                            Model.Pet.ImageUrls = Model.Pet.ImageUrls.Substring(0, Model.Pet.ImageUrls.Length - 1);
+                        }
+
                         foreach (var image in Model.Pet.ImageUrls.Split(","))
                         {
                             var trimmedImage = image.Trim();
+
                             <div class="col-md-1 p-5 existing_image" id="@trimmedImage">
                                 <img src="@trimmedImage" width="50" height="50" />
                                 <a href="#" class="link-danger small">Remove</a>

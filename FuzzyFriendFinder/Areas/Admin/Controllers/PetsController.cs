@@ -114,7 +114,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 createPet.Pictures.ForEach(picture =>
                 {
                     var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
-                    var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                    var uniqueFilename = Guid.NewGuid().ToString() + filename.Substring(filename.Length - 4);
                     var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
                     using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                     {
@@ -226,7 +226,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                         editPet.Pictures.ForEach(picture =>
                         {
                             var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
-                            var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                            var uniqueFilename = Guid.NewGuid().ToString() + filename.Substring(filename.Length - 4);
                             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
                             using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                             {
@@ -254,8 +254,10 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                     {
                         //directly update the database with what is in createPet.Pet.ImageUrls
                         existingImageUrls = existingImageUrls.Trim();
-                        if (existingImageUrls.EndsWith(','))
+                        while (existingImageUrls.EndsWith(',') || existingImageUrls.EndsWith(' '))
+                        {
                             existingImageUrls = existingImageUrls.Substring(0, existingImageUrls.Length - 1);
+                        }
                         petToUpdate.ImageUrls = existingImageUrls;
                     }
                     else
@@ -265,7 +267,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                         editPet.Pictures.ForEach(picture =>
                         {
                             var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
-                            var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                            var uniqueFilename = Guid.NewGuid().ToString() + filename.Substring(filename.Length - 4);
                             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
                             using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                             {

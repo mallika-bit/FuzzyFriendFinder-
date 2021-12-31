@@ -24725,3 +24725,9 @@ legend {
         flex: 2;
         order: 2;
     }
+
+.tab-content .carousel {
+    width:342px;
+    height:228px;
+    overflow:hidden;
+}
