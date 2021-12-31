@@ -218,9 +218,15 @@
                 @{
                     if (Model.Pet.ImageUrls != null)
                     {
+                        while (Model.Pet.ImageUrls.EndsWith(',') || Model.Pet.ImageUrls.EndsWith(' '))
+                        {
+                            Model.Pet.ImageUrls = Model.Pet.ImageUrls.Substring(0, Model.Pet.ImageUrls.Length - 1);
+                        }
+
                         foreach (var image in Model.Pet.ImageUrls.Split(","))
                         {
                             var trimmedImage = image.Trim();
+
                             <div class="col-md-1 p-5 existing_image" id="@trimmedImage">
                                 <img src="@trimmedImage" width="50" height="50" />
                                 <a href="#" class="link-danger small">Remove</a>
@@ -228,16 +234,17 @@
                         }
                     }
                     @*else
-                    {
-                        <div class="no_existing_images">
-                            <label class="col-form-label">No existing images.</label>
-                        </div>
-                    }*@
+            {
+                <div class="no_existing_images">
+                    <label class="col-form-label">No existing images.</label>
+                </div>
+            }*@
                 }
                 <div class="no_existing_images d-none">
                     <label class="col-form-label">No existing images.</label>
                 </div>
-                <input id="existingImageUrls" type="hidden" asp-for="Pet.ImageUrls" value="@Model.Pet.ImageUrls" />
+                <input id="existingImageUrls" type="hidden" asp-for="ExistingImageUrls" value="@Model.ExistingImageUrls" />
+                <input id="existingImageUrlsDummy" type="hidden" asp-for="Pet.ImageUrls" value="@Model.Pet.ImageUrls" />
             </div>
         </div>
     </div>

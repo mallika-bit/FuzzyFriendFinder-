@@ -114,7 +114,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 createPet.Pictures.ForEach(picture =>
                 {
                     var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
-                    var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                    var uniqueFilename = Guid.NewGuid().ToString() + filename.Substring(filename.Length - 4);
                     var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
                     using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                     {
@@ -167,6 +167,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
             var editPet = new EditPet();
             editPet.Pet = pet;
             editPet.Id = pet.Id;
+            editPet.ExistingImageUrls = pet.ImageUrls;
 
             return View(editPet);
         }
@@ -185,7 +186,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 ModelState.AddModelError("Pet.CategoryId", "Category field is required.");
             }
 
-            if (editPet.Pictures == null && editPet.Pet.ImageUrls == null)
+            if (editPet.Pictures == null && editPet.ExistingImageUrls == null)
             {
                 ModelState.AddModelError("Pictures", "Atleast one image is required.");
             }
@@ -209,11 +210,11 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                 petToUpdate.Years = editPet.Pet.Years;
 
 
-                var existingImageUrls = editPet.Pet.ImageUrls;
+                var existingImageUrls = editPet.ExistingImageUrls;
 
                 petToUpdate.ImageUrls = "";
 
-                if (existingImageUrls == null)
+                if (string.IsNullOrEmpty(existingImageUrls))
                 {
                     if (editPet.Pictures == null)
                     {
@@ -225,7 +226,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                         editPet.Pictures.ForEach(picture =>
                         {
                             var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
-                            var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                            var uniqueFilename = Guid.NewGuid().ToString() + filename.Substring(filename.Length - 4);
                             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
                             using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                             {
@@ -252,6 +253,11 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                     if (editPet.Pictures == null)
                     {
                         //directly update the database with what is in createPet.Pet.ImageUrls
+                        existingImageUrls = existingImageUrls.Trim();
+                        while (existingImageUrls.EndsWith(',') || existingImageUrls.EndsWith(' '))
+                        {
+                            existingImageUrls = existingImageUrls.Substring(0, existingImageUrls.Length - 1);
+                        }
                         petToUpdate.ImageUrls = existingImageUrls;
                     }
                     else
@@ -261,7 +267,7 @@ namespace FuzzyFriendFinder.Areas.Admin.Controllers
                         editPet.Pictures.ForEach(picture =>
                         {
                             var filename = ContentDispositionHeaderValue.Parse(picture.ContentDisposition).FileName.Trim('"');
-                            var uniqueFilename = Guid.NewGuid().ToString() + "_" + filename;
+                            var uniqueFilename = Guid.NewGuid().ToString() + filename.Substring(filename.Length - 4);
                             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", uniqueFilename);
                             using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                             {

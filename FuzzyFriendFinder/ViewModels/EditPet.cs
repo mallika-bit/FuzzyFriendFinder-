@@ -10,8 +10,8 @@ namespace FuzzyFriendFinder.ViewModels
     public class EditPet
     {
         public Pet Pet { get; set; }
-        public List<IFormFile> Pictures { get; set; }
-        
+        public List<IFormFile> Pictures { get; set; }       
         public int Id { get; set; }
+        public string ExistingImageUrls { get; set; }
     }
 }
