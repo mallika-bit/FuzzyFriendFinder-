@@ -7,6 +7,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+
+//Author : Mallika
 namespace Spice.ViewComponents
 {
     public class UserNameViewComponent : ViewComponent
@@ -17,7 +19,8 @@ namespace Spice.ViewComponents
             _db = db;
 
         }
-
+        
+        //getting user from Db
         public async  Task<IViewComponentResult> InvokeAsync()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;

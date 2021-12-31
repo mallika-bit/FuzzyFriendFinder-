@@ -29,6 +29,14 @@ using System.Threading.Tasks;
  *                 
  *                 Register: Register new user //these views can see in Identity/pages/register.cshtml
  *                 Login: User can login       // Identity/pages/login.cshtml
+ *                 
+ *                 Admin: For common admin creation DbInitialzer/IDbInitializer class is in Data folder
+ *                 
+ *                 ViewComponents: Used to display user name in navbar , it is located in 
+ *                                 ViewComponents/UserNameViewComponent.cs, View file is in 
+ *                                 Views/Shared/Components/UserName/Default.cshtml
+ *                 
+ *                 
  * HomeController
  *       Author        :   Prasita
  * Views Author
@@ -37,9 +45,15 @@ using System.Threading.Tasks;
  * Logo                :   JulesKFisher, Amelia
  * Cats,Dogs,
  * AllListings         :   Prasita
- * Details             :   Mallika
+ * 
+ * DetailsPage/
+ * Displaying
+ * Username instead 
+ * of email in Navbar  :   Mallika
+ * 
  * Serach              :   Geeta
- * Register/Login      :   Geeta
+ * Register/Login/
+ * AdminCreation       :   Geeta
  *******************************************************************************************************************************************/
 
 
