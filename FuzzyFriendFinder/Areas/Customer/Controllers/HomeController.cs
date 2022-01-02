@@ -51,9 +51,9 @@ using System.Threading.Tasks;
  * Username instead 
  * of email in Navbar  :   Mallika
  * 
- * Serach              :   Geeta
+ * Serach              :   Geetha
  * Register/Login/
- * AdminCreation       :   Geeta
+ * AdminCreation       :   Geetha
  *******************************************************************************************************************************************/
 
 
