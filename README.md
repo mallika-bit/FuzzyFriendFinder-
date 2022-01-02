@@ -1,6 +1,6 @@
 # FuzzyFriendFinder-
 We have 5 Controllers in our project
-Admin
+ Admin
 ## PetController
 ## UserController
 Customer
@@ -10,7 +10,7 @@ Customer
 
 Admin login Email:admin@gmail.com
 password: Admin@123
-admin login , password created By Geetha
+
 
 ### Planning and Designing
   1.Mallika
