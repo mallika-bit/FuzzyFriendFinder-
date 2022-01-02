@@ -1,16 +1,15 @@
 # FuzzyFriendFinder-
 We have 5 Controllers in our project
- Admin
-## PetController
-## UserController
-Customer
-## HomeController
-## AdoptionController
-## DonationController
+## Admin
+### PetController
+### UserController
+## Customer
+### HomeController
+### AdoptionController
+### DonationController
 
 Admin login Email:admin@gmail.com
 password: Admin@123
-
 
 ### Planning and Designing
   1.Mallika
@@ -20,7 +19,5 @@ password: Admin@123
   5.JuleskFisher
   6.Amelia
   
+#### This project is done by under the guidence and support of Mentor Ravish
 
-
-
-This project is done by under the guidence and support of Mentor Ravish
